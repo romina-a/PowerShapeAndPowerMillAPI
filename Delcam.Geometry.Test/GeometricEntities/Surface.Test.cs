@@ -12,6 +12,7 @@ using System.IO;
 using System.Linq;
 using Autodesk.Geometry.GeometricEntities;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Autodesk.Geometry.Test.GeometricEntities
 {
@@ -19,7 +20,8 @@ namespace Autodesk.Geometry.Test.GeometricEntities
     public class SurfaceTest
     {
         private string _testDirectory = Path.Combine(TestContext.CurrentContext.TestDirectory,
-                                                     @"..\..\TestFiles\SurfaceTestFiles\");
+                                                     "TestFiles",
+                                                     "SurfaceTestFiles");
 
         [Test]
         public void WhenCreatingFromASetOfOpenCurves_GivenLaterals_ThenCheckPerpendiculars()
@@ -37,13 +39,13 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             {
                 for (int j = 0; j < numberOfPoints; j++)
                 {
-                    Assert.AreEqual(expectedCurves[i][j].X,
+                    ClassicAssert.AreEqual(expectedCurves[i][j].X,
                                     surface.Longitudinals[i][j].X,
                                     "Perpendicular curves differ from the expected ones.");
-                    Assert.AreEqual(expectedCurves[i][j].Y,
+                    ClassicAssert.AreEqual(expectedCurves[i][j].Y,
                                     surface.Longitudinals[i][j].Y,
                                     "Perpendicular curves differ from the expected ones.");
-                    Assert.AreEqual(expectedCurves[i][j].Z,
+                    ClassicAssert.AreEqual(expectedCurves[i][j].Z,
                                     surface.Longitudinals[i][j].Z,
                                     "Perpendicular curves differ from the expected ones.");
                 }
@@ -66,13 +68,13 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             {
                 for (int j = 0; j < numberOfPoints; j++)
                 {
-                    Assert.AreEqual(expectedCurves[i][j].X,
+                    ClassicAssert.AreEqual(expectedCurves[i][j].X,
                                     surface.Laterals[i][j].X,
                                     "Perpendicular curves differ from the expected ones.");
-                    Assert.AreEqual(expectedCurves[i][j].Y,
+                    ClassicAssert.AreEqual(expectedCurves[i][j].Y,
                                     surface.Laterals[i][j].Y,
                                     "Perpendicular curves differ from the expected ones.");
-                    Assert.AreEqual(expectedCurves[i][j].Z,
+                    ClassicAssert.AreEqual(expectedCurves[i][j].Z,
                                     surface.Laterals[i][j].Z,
                                     "Perpendicular curves differ from the expected ones.");
                 }
@@ -95,13 +97,13 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             {
                 for (int j = 0; j < numberOfPoints; j++)
                 {
-                    Assert.AreEqual(expectedCurves[i][j].X,
+                    ClassicAssert.AreEqual(expectedCurves[i][j].X,
                                     surface.Longitudinals[i][j].X,
                                     "Perpendicular curves differ from the expected ones.");
-                    Assert.AreEqual(expectedCurves[i][j].Y,
+                    ClassicAssert.AreEqual(expectedCurves[i][j].Y,
                                     surface.Longitudinals[i][j].Y,
                                     "Perpendicular curves differ from the expected ones.");
-                    Assert.AreEqual(expectedCurves[i][j].Z,
+                    ClassicAssert.AreEqual(expectedCurves[i][j].Z,
                                     surface.Longitudinals[i][j].Z,
                                     "Perpendicular curves differ from the expected ones.");
                 }

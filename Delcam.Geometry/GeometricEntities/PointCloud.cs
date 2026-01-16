@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using Microsoft.VisualBasic;
 
@@ -151,11 +152,11 @@ namespace Autodesk.Geometry
                 //Write header
                 string strShortFileName = file.Name;
                 string strDateTime = null;
-                var _with1 = DateAndTime.Now;
-                strDateTime = _with1.Day + " " + DateAndTime.MonthName(_with1.Month, true).ToUpper() + " " + _with1.Year + " " +
+                var _with1 = DateTime.Now;
+                strDateTime = _with1.Day + " " + DateTimeFormatInfo.CurrentInfo.GetMonthName(_with1.Month).ToUpper() + " " + _with1.Year + " " +
                               _with1.Hour + "." + _with1.Minute + "." + _with1.Second;
                 strPictureData.Append("   DuctPicture PICTURE FILE  " + strShortFileName + "  " + strDateTime +
-                                      Constants.vbNewLine);
+                                      Environment.NewLine);
 
                 //Write part line
                 string strUnits = "";
@@ -168,10 +169,10 @@ namespace Autodesk.Geometry
                         strUnits = "INCHES";
                         break;
                 }
-                strPictureData.Append(" PART:                     PowerMILL MADE IN     " + strUnits + Constants.vbNewLine);
+                strPictureData.Append(" PART:                     PowerMILL MADE IN     " + strUnits + Environment.NewLine);
 
                 //Write special marker
-                strPictureData.Append(" *" + Constants.vbNewLine);
+                strPictureData.Append(" *" + Environment.NewLine);
 
                 //Write integer data
                 string strIntLine = "";
@@ -186,26 +187,26 @@ namespace Autodesk.Geometry
                     strIntLine += " " + GetField(4, 6) + GetField(3, 6) + GetField(-1, 6) + GetField(1, 6) + GetField(Count, 6) +
                                   GetField(-2, 6) + GetField(2, 6) + GetField(0, 6) + GetField(0, 6) + GetField(0, 6);
                 }
-                strPictureData.Append(strIntLine + Constants.vbNewLine);
+                strPictureData.Append(strIntLine + Environment.NewLine);
 
                 //Write size data
                 string strSizeLine = "";
                 strSizeLine += " " + GetField(0, "0.0000", 10) + GetField(0, "0.0000", 10) + GetField(0, "0.0000", 10) +
                                GetField(0, "0.0000", 10) + GetField(0, "0.0000", 10) + GetField(0, "0.0000", 10) +
                                GetField(0, "0.0000", 10);
-                strPictureData.Append(strSizeLine + Constants.vbNewLine);
+                strPictureData.Append(strSizeLine + Environment.NewLine);
 
                 //Write instruction codes
                 int intInstructionCode = GetInstructionCode(1, 0, 0, 0, 0, 0);
                 string strInstructionCode = "";
                 if (Count > 1000000)
                 {
-                    strInstructionCode = " " + GetField(intInstructionCode, 11) + " " + GetField(Count, 11) + Constants.vbNewLine;
+                    strInstructionCode = " " + GetField(intInstructionCode, 11) + " " + GetField(Count, 11) + Environment.NewLine;
                     strPictureData.Append(strInstructionCode);
                 }
                 else
                 {
-                    strInstructionCode = " " + GetField(intInstructionCode, 11) + " " + GetField(Count, 6) + Constants.vbNewLine;
+                    strInstructionCode = " " + GetField(intInstructionCode, 11) + " " + GetField(Count, 6) + Environment.NewLine;
                     strPictureData.Append(strInstructionCode);
                 }
 
@@ -219,7 +220,7 @@ namespace Autodesk.Geometry
                                                  this[p].X,
                                                  this[p].Y,
                                                  this[p].Z);
-                    strPictureData.Append(strPointCode + Constants.vbNewLine);
+                    strPictureData.Append(strPointCode + Environment.NewLine);
                 }
 
                 //Write the file
@@ -240,7 +241,7 @@ namespace Autodesk.Geometry
         private static string GetField(int Value, int FieldLength)
         {
             string tmp = Value.ToString("0");
-            tmp = Strings.Space(FieldLength - tmp.Length) + tmp;
+            tmp = new string(' ',FieldLength - tmp.Length) + tmp;
             return tmp;
         }
 
@@ -248,7 +249,7 @@ namespace Autodesk.Geometry
         {
             //Use System.Globalization.CultureInfo.InvariantCulture
             string tmp = Value.ToString(FormatCode, System.Globalization.CultureInfo.InvariantCulture);
-            tmp = Strings.Space(FieldLength - tmp.Length) + tmp;
+            tmp = new string(' ', FieldLength - tmp.Length) + tmp;
             return tmp;
         }
 

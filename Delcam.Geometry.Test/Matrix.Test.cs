@@ -10,6 +10,7 @@
 using System;
 using Autodesk.Matrix;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Autodesk.Geometry.Test
 {
@@ -36,15 +37,15 @@ namespace Autodesk.Geometry.Test
             b = b.Multiply(2);
 
             var c = a.HadamardProduct(b);
-            Assert.AreEqual(6, c[0, 0]);
-            Assert.AreEqual(0, c[0, 1]);
-            Assert.AreEqual(0, c[0, 2]);
-            Assert.AreEqual(6, c[1, 1]);
-            Assert.AreEqual(0, c[1, 0]);
-            Assert.AreEqual(0, c[1, 2]);
-            Assert.AreEqual(6, c[2, 2]);
-            Assert.AreEqual(0, c[2, 0]);
-            Assert.AreEqual(0, c[2, 1]);
+            ClassicAssert.AreEqual(6, c[0, 0]);
+            ClassicAssert.AreEqual(0, c[0, 1]);
+            ClassicAssert.AreEqual(0, c[0, 2]);
+            ClassicAssert.AreEqual(6, c[1, 1]);
+            ClassicAssert.AreEqual(0, c[1, 0]);
+            ClassicAssert.AreEqual(0, c[1, 2]);
+            ClassicAssert.AreEqual(6, c[2, 2]);
+            ClassicAssert.AreEqual(0, c[2, 0]);
+            ClassicAssert.AreEqual(0, c[2, 1]);
         }
     }
 }

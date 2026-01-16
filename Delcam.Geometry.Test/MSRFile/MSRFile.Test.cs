@@ -1,5 +1,5 @@
 // **********************************************************************
-// *         © COPYRIGHT 2018 Autodesk, Inc.All Rights Reserved         *
+// *         ï¿½ COPYRIGHT 2018 Autodesk, Inc.All Rights Reserved         *
 // *                                                                    *
 // *  Use of this software is subject to the terms of the Autodesk      *
 // *  license agreement provided at the time of installation            *
@@ -11,7 +11,9 @@ using System;
 using System.Globalization;
 using System.Threading;
 using Autodesk.FileSystem;
+using Autodesk.Geometry.Test.GeometricEntities;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Autodesk.Geometry.Test.MSRFile
 {
@@ -22,22 +24,18 @@ namespace Autodesk.Geometry.Test.MSRFile
         public void MSRFileReadTest()
         {
             Geometry.MSRFile msrFile =
-                new Geometry.MSRFile(AppDomain.CurrentDomain.BaseDirectory +
-                                     "\\..\\..\\TestFiles\\MSRTestFiles\\G330 Untransformed.msr",
-                                     true);
-            Assert.AreEqual(81, msrFile.Points.Count);
+                new Geometry.MSRFile(TestFiles.FetchTestFile("G330 Untransformed.msr"), true);
+            ClassicAssert.AreEqual(81, msrFile.Points.Count);
         }
 
         [Test]
         public void MSRFileDetransformTest()
         {
             Geometry.MSRFile msrFile =
-                new Geometry.MSRFile(AppDomain.CurrentDomain.BaseDirectory +
-                                     "\\..\\..\\TestFiles\\MSRTestFiles\\G330 Untransformed.msr",
-                                     true);
+                new Geometry.MSRFile(TestFiles.FetchTestFile("G330 Untransformed.msr"), true);
             File detransformedFile =
-                new File(AppDomain.CurrentDomain.BaseDirectory + "\\..\\..\\TestFiles\\MSRTestFiles\\G330 Detransformed.msr");
-            Assert.AreEqual(detransformedFile.ReadText(), msrFile.ToString());
+                new File(TestFiles.FetchTestFile("G330 Detransformed.msr"));
+            ClassicAssert.AreEqual(detransformedFile.ReadText(), msrFile.ToString());
         }
 
         [Test]
@@ -51,7 +49,7 @@ namespace Autodesk.Geometry.Test.MSRFile
             {
                 Geometry.MSRFile msrFile =
                     new Geometry.MSRFile(
-                        AppDomain.CurrentDomain.BaseDirectory + "\\..\\..\\TestFiles\\MSRTestFiles\\Culture Agnostic.msr",
+                        TestFiles.FetchTestFile("Culture Agnostic.msr"),
                         true);
             }
             catch (Exception ex)
@@ -72,9 +70,7 @@ namespace Autodesk.Geometry.Test.MSRFile
             try
             {
                 Geometry.MSRFile msrFile =
-                    new Geometry.MSRFile(AppDomain.CurrentDomain.BaseDirectory +
-                                         "\\..\\..\\TestFiles\\MSRTestFiles\\Empty File.msr",
-                                         true);
+                    new Geometry.MSRFile(TestFiles.FetchTestFile("Empty File.msr"), true);
             }
             catch (Exception ex)
             {
@@ -89,8 +85,7 @@ namespace Autodesk.Geometry.Test.MSRFile
             try
             {
                 Geometry.MSRFile msrFile =
-                    new Geometry.MSRFile(AppDomain.CurrentDomain.BaseDirectory + "\\..\\..\\TestFiles\\MSRTestFiles\\No Data.msr",
-                                         true);
+                    new Geometry.MSRFile(TestFiles.FetchTestFile("No Data.msr"), true);
             }
             catch (Exception ex)
             {
@@ -105,9 +100,7 @@ namespace Autodesk.Geometry.Test.MSRFile
             try
             {
                 Geometry.MSRFile msrFile =
-                    new Geometry.MSRFile(AppDomain.CurrentDomain.BaseDirectory +
-                                         "\\..\\..\\TestFiles\\MSRTestFiles\\Odd Characters.msr",
-                                         true);
+                    new Geometry.MSRFile(TestFiles.FetchTestFile("Odd Characters.msr"), true);
             }
             catch (Exception ex)
             {
@@ -122,9 +115,7 @@ namespace Autodesk.Geometry.Test.MSRFile
             try
             {
                 Geometry.MSRFile msrFile =
-                    new Geometry.MSRFile(AppDomain.CurrentDomain.BaseDirectory +
-                                         "\\..\\..\\TestFiles\\MSRTestFiles\\Extra Ordinate.msr",
-                                         true);
+                    new Geometry.MSRFile(TestFiles.FetchTestFile("Extra Ordinate.msr"), true);
             }
             catch (Exception ex)
             {
@@ -140,7 +131,7 @@ namespace Autodesk.Geometry.Test.MSRFile
             {
                 Geometry.MSRFile msrFile =
                     new Geometry.MSRFile(
-                        AppDomain.CurrentDomain.BaseDirectory + "\\..\\..\\TestFiles\\MSRTestFiles\\Missing G800 Line.msr",
+                        TestFiles.FetchTestFile("Missing G800 Line.msr"),
                         true);
             }
             catch (Exception ex)
@@ -157,7 +148,7 @@ namespace Autodesk.Geometry.Test.MSRFile
             {
                 Geometry.MSRFile msrFile =
                     new Geometry.MSRFile(
-                        AppDomain.CurrentDomain.BaseDirectory + "\\..\\..\\TestFiles\\MSRTestFiles\\Missing G801 Line.msr",
+                        TestFiles.FetchTestFile("Missing G801 Line.msr"),
                         true);
             }
             catch (Exception ex)
@@ -174,7 +165,7 @@ namespace Autodesk.Geometry.Test.MSRFile
             {
                 Geometry.MSRFile msrFile =
                     new Geometry.MSRFile(
-                        AppDomain.CurrentDomain.BaseDirectory + "\\..\\..\\TestFiles\\MSRTestFiles\\Line Number Error.msr",
+                        TestFiles.FetchTestFile("Line Number Error.msr"),
                         true);
             }
             catch (Exception ex)
@@ -190,9 +181,7 @@ namespace Autodesk.Geometry.Test.MSRFile
             try
             {
                 Geometry.MSRFile msrFile =
-                    new Geometry.MSRFile(AppDomain.CurrentDomain.BaseDirectory +
-                                         "\\..\\..\\TestFiles\\MSRTestFiles\\TwoStarts.msr",
-                                         true);
+                    new Geometry.MSRFile(TestFiles.FetchTestFile("TwoStarts.msr"), true);
             }
             catch (Exception ex)
             {
@@ -207,8 +196,7 @@ namespace Autodesk.Geometry.Test.MSRFile
             try
             {
                 Geometry.MSRFile msrFile =
-                    new Geometry.MSRFile(AppDomain.CurrentDomain.BaseDirectory + "\\..\\..\\TestFiles\\MSRTestFiles\\TwoEnds.msr",
-                                         true);
+                    new Geometry.MSRFile(TestFiles.FetchTestFile("TwoEnds.msr"), true);
             }
             catch (Exception ex)
             {
@@ -223,9 +211,7 @@ namespace Autodesk.Geometry.Test.MSRFile
             try
             {
                 Geometry.MSRFile msrFile =
-                    new Geometry.MSRFile(AppDomain.CurrentDomain.BaseDirectory +
-                                         "\\..\\..\\TestFiles\\MSRTestFiles\\TwoStartsOK.msr",
-                                         true);
+                    new Geometry.MSRFile(TestFiles.FetchTestFile("TwoStartsOK.msr"), true);
                 Assert.That(msrFile.Points.Count, Is.EqualTo(6));
             }
             catch (Exception ex)
@@ -241,8 +227,7 @@ namespace Autodesk.Geometry.Test.MSRFile
             try
             {
                 Geometry.MSRFile msrFile =
-                    new Geometry.MSRFile(AppDomain.CurrentDomain.BaseDirectory + "\\..\\..\\TestFiles\\MSRTestFiles\\TwoEndsOK.msr",
-                                         true);
+                    new Geometry.MSRFile(TestFiles.FetchTestFile("TwoEndsOK.msr"), true);
                 Assert.That(msrFile.Points.Count, Is.EqualTo(6));
             }
             catch (Exception ex)
@@ -256,16 +241,14 @@ namespace Autodesk.Geometry.Test.MSRFile
         public void WriteFile()
         {
             Geometry.MSRFile msrFile =
-                new Geometry.MSRFile(AppDomain.CurrentDomain.BaseDirectory +
-                                     "\\..\\..\\TestFiles\\MSRTestFiles\\G330 Untransformed.msr",
-                                     true);
-            Assert.AreEqual(81, msrFile.Points.Count);
+                new Geometry.MSRFile(TestFiles.FetchTestFile("G330 Untransformed.msr"), true);
+            ClassicAssert.AreEqual(81, msrFile.Points.Count);
 
             var fileToSave = new File(string.Format("{0}\\\\test.msr", System.IO.Path.GetTempPath()));
             msrFile.WriteFile(fileToSave.Path);
 
             Geometry.MSRFile fileSaved = new Geometry.MSRFile(fileToSave.Path, true);
-            Assert.AreEqual(81, fileSaved.Points.Count);
+            ClassicAssert.AreEqual(81, fileSaved.Points.Count);
 
             fileToSave.Delete();
         }

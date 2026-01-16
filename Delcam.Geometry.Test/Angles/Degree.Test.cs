@@ -1,5 +1,5 @@
 // **********************************************************************
-// *         © COPYRIGHT 2018 Autodesk, Inc.All Rights Reserved         *
+// *         ï¿½ COPYRIGHT 2018 Autodesk, Inc.All Rights Reserved         *
 // *                                                                    *
 // *  Use of this software is subject to the terms of the Autodesk      *
 // *  license agreement provided at the time of installation            *
@@ -9,6 +9,7 @@
 
 using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Autodesk.Geometry.Test.Angles
 {
@@ -38,7 +39,7 @@ namespace Autodesk.Geometry.Test.Angles
         {
             Degree angle = new Degree(1.0);
             double angleDouble = angle;
-            Assert.AreEqual(angleDouble, 1.0);
+            ClassicAssert.AreEqual(angleDouble, 1.0);
         }
 
         [Test]
@@ -46,7 +47,7 @@ namespace Autodesk.Geometry.Test.Angles
         {
             Degree angle = new Degree(1.0);
             float angleSingle = (float) angle;
-            Assert.AreEqual(angleSingle, 1.0);
+            ClassicAssert.AreEqual(angleSingle, 1.0);
         }
 
         [Test]
@@ -54,14 +55,14 @@ namespace Autodesk.Geometry.Test.Angles
         {
             Radian angleRadian = new Radian(1.0);
             Degree angleDegree = angleRadian;
-            Assert.AreEqual(angleDegree.Value, 1.0 * 180.0 / Math.PI);
+            ClassicAssert.AreEqual(angleDegree.Value, 1.0 * 180.0 / Math.PI);
         }
 
         [Test]
         public void DoubleToDegree()
         {
             Degree angle = 1.0;
-            Assert.AreEqual(angle.Value, 1.0);
+            ClassicAssert.AreEqual(angle.Value, 1.0);
         }
 
         #endregion
@@ -73,7 +74,7 @@ namespace Autodesk.Geometry.Test.Angles
         {
             Degree angle = 1;
             angle = -angle;
-            Assert.AreEqual(angle.Value, -1);
+            ClassicAssert.AreEqual(angle.Value, -1);
         }
 
         [Test]
@@ -82,7 +83,7 @@ namespace Autodesk.Geometry.Test.Angles
             Degree angle1 = new Degree(3.0);
             Degree angle2 = new Degree(2.0);
             Degree difference = angle1 - angle2;
-            Assert.AreEqual(difference.Value, 1.0);
+            ClassicAssert.AreEqual(difference.Value, 1.0);
         }
 
         [Test]
@@ -91,7 +92,7 @@ namespace Autodesk.Geometry.Test.Angles
             Degree angle1 = new Degree(3.0);
             Degree angle2 = new Degree(2.0);
             Degree sum = angle1 + angle2;
-            Assert.AreEqual(sum.Value, 5.0);
+            ClassicAssert.AreEqual(sum.Value, 5.0);
         }
 
         [Test]
@@ -105,7 +106,7 @@ namespace Autodesk.Geometry.Test.Angles
             {
                 delta *= -1;
             }
-            Assert.IsTrue(delta <= double.Epsilon);
+            ClassicAssert.IsTrue(delta <= double.Epsilon);
         }
 
         [Test]
@@ -113,67 +114,67 @@ namespace Autodesk.Geometry.Test.Angles
         {
             Degree angle1 = new Degree(3.0);
             Degree angle2 = new Degree(2.0);
-            Assert.AreEqual((angle1 * angle2).Value, 6.0);
-            Assert.AreEqual((angle1 * 4.0).Value, 12.0);
-            Assert.AreEqual((4.0 * angle1).Value, 12.0);
+            ClassicAssert.AreEqual((angle1 * angle2).Value, 6.0);
+            ClassicAssert.AreEqual((angle1 * 4.0).Value, 12.0);
+            ClassicAssert.AreEqual((4.0 * angle1).Value, 12.0);
         }
 
         [Test]
         public void LessThanTest()
         {
             Degree angle = new Degree(3.0);
-            Assert.IsTrue(angle < 4.0);
-            Assert.IsFalse(angle < 2.0);
+            ClassicAssert.IsTrue(angle < 4.0);
+            ClassicAssert.IsFalse(angle < 2.0);
 
-            Assert.IsTrue(angle < new Degree(4.0));
-            Assert.IsFalse(angle < new Degree(2.0));
+            ClassicAssert.IsTrue(angle < new Degree(4.0));
+            ClassicAssert.IsFalse(angle < new Degree(2.0));
         }
 
         [Test]
         public void GreaterThanTest()
         {
             Degree angle = new Degree(3.0);
-            Assert.IsFalse(angle > 4.0);
-            Assert.IsTrue(angle > 2.0);
+            ClassicAssert.IsFalse(angle > 4.0);
+            ClassicAssert.IsTrue(angle > 2.0);
 
-            Assert.IsFalse(angle > new Degree(4.0));
-            Assert.IsTrue(angle > new Degree(2.0));
+            ClassicAssert.IsFalse(angle > new Degree(4.0));
+            ClassicAssert.IsTrue(angle > new Degree(2.0));
         }
 
         [Test]
         public void LessThanOrEqualTest()
         {
             Degree angle = new Degree(3.0);
-            Assert.IsTrue(angle <= 3.0);
-            Assert.IsFalse(angle <= 2.0);
+            ClassicAssert.IsTrue(angle <= 3.0);
+            ClassicAssert.IsFalse(angle <= 2.0);
 
-            Assert.IsTrue(angle <= new Degree(3.0));
-            Assert.IsFalse(angle <= new Degree(2.0));
+            ClassicAssert.IsTrue(angle <= new Degree(3.0));
+            ClassicAssert.IsFalse(angle <= new Degree(2.0));
         }
 
         [Test]
         public void GreaterThanOrEqualTest()
         {
             Degree angle = new Degree(3.0);
-            Assert.IsTrue(angle >= 3.0);
-            Assert.IsFalse(angle >= 4.0);
+            ClassicAssert.IsTrue(angle >= 3.0);
+            ClassicAssert.IsFalse(angle >= 4.0);
 
-            Assert.IsTrue(angle >= new Degree(3.0));
-            Assert.IsFalse(angle >= new Degree(4.0));
+            ClassicAssert.IsTrue(angle >= new Degree(3.0));
+            ClassicAssert.IsFalse(angle >= new Degree(4.0));
         }
 
         [Test]
         public void EqualityTest()
         {
-            Assert.IsTrue(new Degree(4.0) == new Degree(4.0));
-            Assert.IsFalse(new Degree(4.0) == new Degree(4.1));
+            ClassicAssert.IsTrue(new Degree(4.0) == new Degree(4.0));
+            ClassicAssert.IsFalse(new Degree(4.0) == new Degree(4.1));
         }
 
         [Test]
         public void InequalityTest()
         {
-            Assert.IsFalse(new Degree(4.0) != new Degree(4.0));
-            Assert.IsTrue(new Degree(4.0) != new Degree(4.1));
+            ClassicAssert.IsFalse(new Degree(4.0) != new Degree(4.0));
+            ClassicAssert.IsTrue(new Degree(4.0) != new Degree(4.1));
         }
 
         #endregion
@@ -185,14 +186,14 @@ namespace Autodesk.Geometry.Test.Angles
         {
             Degree angle = new Degree(1.23);
 
-            Assert.AreEqual(angle.ToString(), 1.23.ToString());
+            ClassicAssert.AreEqual(angle.ToString(), 1.23.ToString());
 
-            Assert.AreEqual(angle.ToString("N3"), 1.23.ToString("N3"));
+            ClassicAssert.AreEqual(angle.ToString("N3"), 1.23.ToString("N3"));
 
             System.Globalization.CultureInfo culture = System.Globalization.CultureInfo.CreateSpecificCulture("de-DE");
-            Assert.AreEqual(angle.ToString(culture), 1.23.ToString(culture));
+            ClassicAssert.AreEqual(angle.ToString(culture), 1.23.ToString(culture));
 
-            Assert.AreEqual(angle.ToString("N3", culture), 1.23.ToString("N3", culture));
+            ClassicAssert.AreEqual(angle.ToString("N3", culture), 1.23.ToString("N3", culture));
         }
 
         [Test]
@@ -200,9 +201,9 @@ namespace Autodesk.Geometry.Test.Angles
         {
             Radian angleRadian = new Radian(1.0);
             Degree angleDegree = angleRadian;
-            Assert.IsTrue(angleDegree.Equals(angleRadian));
-            Assert.IsTrue(angleDegree.Equals(angleDegree));
-            Assert.IsTrue(angleDegree.Equals(angleRadian, 10));
+            ClassicAssert.IsTrue(angleDegree.Equals(angleRadian));
+            ClassicAssert.IsTrue(angleDegree.Equals(angleDegree));
+            ClassicAssert.IsTrue(angleDegree.Equals(angleRadian, 10));
         }
 
         [Test]
@@ -212,9 +213,9 @@ namespace Autodesk.Geometry.Test.Angles
             Degree angle2 = new Degree(2.0);
             Degree angle3 = new Degree(3.0);
 
-            Assert.AreEqual(angle1.CompareTo(angle2), angle1.Value.CompareTo(angle2.Value));
-            Assert.AreEqual(angle1.CompareTo(angle3), angle1.Value.CompareTo(angle3.Value));
-            Assert.AreEqual(angle3.CompareTo(angle1), angle3.Value.CompareTo(angle1.Value));
+            ClassicAssert.AreEqual(angle1.CompareTo(angle2), angle1.Value.CompareTo(angle2.Value));
+            ClassicAssert.AreEqual(angle1.CompareTo(angle3), angle1.Value.CompareTo(angle3.Value));
+            ClassicAssert.AreEqual(angle3.CompareTo(angle1), angle3.Value.CompareTo(angle1.Value));
         }
 
         #endregion

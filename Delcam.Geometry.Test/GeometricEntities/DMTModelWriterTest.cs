@@ -9,6 +9,7 @@
 
 using System.IO;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using File = Autodesk.FileSystem.File;
 
 namespace Autodesk.Geometry.Test.GeometricEntities
@@ -26,12 +27,12 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             DMTModel writtenModel = DMTModelReader.ReadFile(outputFile);
 
             // Ensure that model is written correctly
-            Assert.AreEqual(importedModel.BoundingBox.MaxX, writtenModel.BoundingBox.MaxX);
-            Assert.AreEqual(importedModel.BoundingBox.MaxY, writtenModel.BoundingBox.MaxY);
-            Assert.AreEqual(importedModel.BoundingBox.MaxZ, writtenModel.BoundingBox.MaxZ);
-            Assert.AreEqual(importedModel.BoundingBox.MinX, writtenModel.BoundingBox.MinX);
-            Assert.AreEqual(importedModel.BoundingBox.MinY, writtenModel.BoundingBox.MinY);
-            Assert.AreEqual(importedModel.BoundingBox.MinZ, writtenModel.BoundingBox.MinZ);
+            ClassicAssert.AreEqual(importedModel.BoundingBox.MaxX, writtenModel.BoundingBox.MaxX);
+            ClassicAssert.AreEqual(importedModel.BoundingBox.MaxY, writtenModel.BoundingBox.MaxY);
+            ClassicAssert.AreEqual(importedModel.BoundingBox.MaxZ, writtenModel.BoundingBox.MaxZ);
+            ClassicAssert.AreEqual(importedModel.BoundingBox.MinX, writtenModel.BoundingBox.MinX);
+            ClassicAssert.AreEqual(importedModel.BoundingBox.MinY, writtenModel.BoundingBox.MinY);
+            ClassicAssert.AreEqual(importedModel.BoundingBox.MinZ, writtenModel.BoundingBox.MinZ);
 
             outputFile.Delete();
         }
@@ -45,12 +46,12 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             DMTModel writtenModel = DMTModelReader.ReadFile(outputFile);
 
             // Ensure that model is written correctly
-            Assert.AreEqual(importedModel.BoundingBox.MaxX, writtenModel.BoundingBox.MaxX);
-            Assert.AreEqual(importedModel.BoundingBox.MaxY, writtenModel.BoundingBox.MaxY);
-            Assert.AreEqual(importedModel.BoundingBox.MaxZ, writtenModel.BoundingBox.MaxZ);
-            Assert.AreEqual(importedModel.BoundingBox.MinX, writtenModel.BoundingBox.MinX);
-            Assert.AreEqual(importedModel.BoundingBox.MinY, writtenModel.BoundingBox.MinY);
-            Assert.AreEqual(importedModel.BoundingBox.MinZ, writtenModel.BoundingBox.MinZ);
+            ClassicAssert.AreEqual(importedModel.BoundingBox.MaxX, writtenModel.BoundingBox.MaxX);
+            ClassicAssert.AreEqual(importedModel.BoundingBox.MaxY, writtenModel.BoundingBox.MaxY);
+            ClassicAssert.AreEqual(importedModel.BoundingBox.MaxZ, writtenModel.BoundingBox.MaxZ);
+            ClassicAssert.AreEqual(importedModel.BoundingBox.MinX, writtenModel.BoundingBox.MinX);
+            ClassicAssert.AreEqual(importedModel.BoundingBox.MinY, writtenModel.BoundingBox.MinY);
+            ClassicAssert.AreEqual(importedModel.BoundingBox.MinZ, writtenModel.BoundingBox.MinZ);
 
             outputFile.Delete();
         }
@@ -64,12 +65,12 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             DMTModel writtenModel = DMTModelReader.ReadFile(outputFile);
 
             // Ensure that model is written correctly
-            Assert.AreEqual(importedModel.BoundingBox.MaxX, writtenModel.BoundingBox.MaxX);
-            Assert.AreEqual(importedModel.BoundingBox.MaxY, writtenModel.BoundingBox.MaxY);
-            Assert.AreEqual(importedModel.BoundingBox.MaxZ, writtenModel.BoundingBox.MaxZ);
-            Assert.AreEqual(importedModel.BoundingBox.MinX, writtenModel.BoundingBox.MinX);
-            Assert.AreEqual(importedModel.BoundingBox.MinY, writtenModel.BoundingBox.MinY);
-            Assert.AreEqual(importedModel.BoundingBox.MinZ, writtenModel.BoundingBox.MinZ);
+            ClassicAssert.AreEqual(importedModel.BoundingBox.MaxX, writtenModel.BoundingBox.MaxX);
+            ClassicAssert.AreEqual(importedModel.BoundingBox.MaxY, writtenModel.BoundingBox.MaxY);
+            ClassicAssert.AreEqual(importedModel.BoundingBox.MaxZ, writtenModel.BoundingBox.MaxZ);
+            ClassicAssert.AreEqual(importedModel.BoundingBox.MinX, writtenModel.BoundingBox.MinX);
+            ClassicAssert.AreEqual(importedModel.BoundingBox.MinY, writtenModel.BoundingBox.MinY);
+            ClassicAssert.AreEqual(importedModel.BoundingBox.MinZ, writtenModel.BoundingBox.MinZ);
 
             outputFile.Delete();
         }

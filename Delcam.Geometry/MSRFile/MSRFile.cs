@@ -637,7 +637,8 @@ namespace Autodesk.Geometry
             int numberOfPoints = Points.Count;
             for (int i = 1; i <= numberOfPoints; i++)
             {
-                outputString.Append(Constants.vbCrLf + "G800 N" + i);
+                //outputString.Append(Constants.vbCrLf + "G800 N" + i);
+                outputString.Append("\r\n" + "G800 N" + i);
                 outputString.Append(" X" + Math.Round(Points[i - 1].NominalSurfacePoint.X.Value, 4));
                 outputString.Append(" Y" + Math.Round(Points[i - 1].NominalSurfacePoint.Y.Value, 4));
                 outputString.Append(" Z" + Math.Round(Points[i - 1].NominalSurfacePoint.Z.Value, 4));
@@ -648,13 +649,13 @@ namespace Autodesk.Geometry
                 outputString.Append(" U" + Math.Round(Points[i - 1].UpperTolerance, 4));
                 outputString.Append(" L" + Math.Round(Points[i - 1].LowerTolerance, 4));
 
-                outputString.Append(Constants.vbCrLf + "G801 N" + i);
+                outputString.Append("\r\n" + "G801 N" + i);
                 outputString.Append(" X" + Math.Round(Points[i - 1].ProbeCentre.X.Value, 4));
                 outputString.Append(" Y" + Math.Round(Points[i - 1].ProbeCentre.Y.Value, 4));
                 outputString.Append(" Z" + Math.Round(Points[i - 1].ProbeCentre.Z.Value, 4));
                 outputString.Append(" R" + Math.Round(Points[i - 1].ProbeRadius.Value, 4));
             }
-            outputString.Append(Constants.vbCrLf + "END");
+            outputString.Append("\r\n" + "END");
 
             return outputString.ToString();
         }

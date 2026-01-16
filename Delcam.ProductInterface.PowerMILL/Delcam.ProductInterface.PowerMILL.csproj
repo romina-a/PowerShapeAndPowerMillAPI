@@ -1,23 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
-    <RootNamespace>Autodesk.ProductInterface</RootNamespace>
-    <AssemblyName>Autodesk.ProductInterface.PowerMILL</AssemblyName>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>delcam.snk</AssemblyOriginatorKeyFile>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\$(Configuration)\$(AssemblyName).xml</DocumentationFile>
-    <LangVersion>latest</LangVersion>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <NoWarn>$(NoWarn);1591</NoWarn>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Delcam.Geometry\Delcam.Geometry.csproj" />
-    <ProjectReference Include="..\Delcam.ProductInterface\Delcam.ProductInterface.csproj" />
-    <ProjectReference Include="..\Delcam.Utilities\Delcam.Utilities.csproj" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFrameworks>net48;net8.0-windows</TargetFrameworks>
+		<RootNamespace>Autodesk.ProductInterface</RootNamespace>
+		<AssemblyName>Autodesk.ProductInterface.PowerMILL</AssemblyName>
+		<SignAssembly>true</SignAssembly>
+		<AssemblyOriginatorKeyFile>delcam.snk</AssemblyOriginatorKeyFile>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<DocumentationFile>bin\$(Configuration)\$(AssemblyName).xml</DocumentationFile>
+		<LangVersion>latest</LangVersion>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<NoWarn>$(NoWarn);1591</NoWarn>
+	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Delcam.Geometry\Delcam.Geometry.csproj" />
+		<ProjectReference Include="..\Delcam.ProductInterface\Delcam.ProductInterface.csproj" />
+		<ProjectReference Include="..\Delcam.Utilities\Delcam.Utilities.csproj" />
+	</ItemGroup>
 </Project>

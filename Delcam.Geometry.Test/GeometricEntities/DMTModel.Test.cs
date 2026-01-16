@@ -1,5 +1,5 @@
 // **********************************************************************
-// *         © COPYRIGHT 2018 Autodesk, Inc.All Rights Reserved         *
+// *         ï¿½ COPYRIGHT 2018 Autodesk, Inc.All Rights Reserved         *
 // *                                                                    *
 // *  Use of this software is subject to the terms of the Autodesk      *
 // *  license agreement provided at the time of installation            *
@@ -10,6 +10,7 @@
 using System.Linq;
 using Autodesk.FileSystem;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Autodesk.Geometry.Test.GeometricEntities
 {
@@ -28,7 +29,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             // NOTE: ProjectPoints(...) is implicitly tested by a call to ProjectPoint(...).
             Point projectedPoint = dmtModel.ProjectPoint(new Point(0, 0, 2000));
 
-            Assert.AreEqual(testPoint, projectedPoint);
+            ClassicAssert.AreEqual(testPoint, projectedPoint);
             Assert.Pass();
         }
 
@@ -44,11 +45,11 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             var expectedOutput =
                 DMTModelReader.ReadFile(new File(TestFiles.FetchTestFile("CoincidentPointsInATriangle_Expected.stl")));
 
-            Assert.IsTrue(importedModel.BoundingBox.XSize == expectedOutput.BoundingBox.XSize,
+            ClassicAssert.IsTrue(importedModel.BoundingBox.XSize == expectedOutput.BoundingBox.XSize,
                           "It is not giving the expected bounding box xsize.");
-            Assert.IsTrue(importedModel.BoundingBox.YSize == expectedOutput.BoundingBox.YSize,
+            ClassicAssert.IsTrue(importedModel.BoundingBox.YSize == expectedOutput.BoundingBox.YSize,
                           "It is not giving the expected bounding box xsize.");
-            Assert.IsTrue(importedModel.BoundingBox.ZSize == expectedOutput.BoundingBox.ZSize,
+            ClassicAssert.IsTrue(importedModel.BoundingBox.ZSize == expectedOutput.BoundingBox.ZSize,
                           "It is not giving the expected bounding box xsize.");
         }
 
@@ -57,7 +58,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
         {
             DMTModel modelToZone = DMTModelReader.ReadFile(new File(TestFiles.SmallModel));
             var nearestPoint = modelToZone.ProjectPoint(new Point(-28.186, -4.1135, 1000));
-            Assert.AreNotEqual(nearestPoint, null);
+            ClassicAssert.AreNotEqual(nearestPoint, null);
         }
 
         [Test]
@@ -66,7 +67,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             DMTModel modelToZone = DMTModelReader.ReadFile(new File(TestFiles.FetchTestFile("BaseLeftFootTopSurface.dmt")));
             var boundaries = modelToZone.Boundaries();
 
-            Assert.AreEqual(boundaries.Count, 1, "Failed to calculate Boundaries. Mesh should have only one boundary.");
+            ClassicAssert.AreEqual(boundaries.Count, 1, "Failed to calculate Boundaries. Mesh should have only one boundary.");
         }
 
         [Test]
@@ -75,7 +76,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             DMTModel modelToZone = DMTModelReader.ReadFile(new File(TestFiles.FetchTestFile("MeshForBoundaryCount.dmt")));
             var boundaries = modelToZone.Boundaries();
 
-            Assert.AreEqual(boundaries.Count, 5, "Failed to calculate Boundaries. Mesh only has five boundaries.");
+            ClassicAssert.AreEqual(boundaries.Count, 5, "Failed to calculate Boundaries. Mesh only has five boundaries.");
         }
 
         [Test]
@@ -85,7 +86,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
                 DMTModelReader.ReadFile(new File(TestFiles.FetchTestFile("MeshForBoundaryCountAfterStitching.dmt")));
             var boundaries = modelToZone.Boundaries();
 
-            Assert.AreEqual(boundaries.Count, 2, "Failed to calculate Boundaries. Mesh only has two boundaries.");
+            ClassicAssert.AreEqual(boundaries.Count, 2, "Failed to calculate Boundaries. Mesh only has two boundaries.");
         }
 
         [Test]
@@ -94,7 +95,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             DMTModel modelToZone = DMTModelReader.ReadFile(new File(TestFiles.FetchTestFile("BaseLeftFootTopSurface.dmt")));
             var boundaryNodes = modelToZone.BoundaryNodes();
 
-            Assert.AreEqual(boundaryNodes.Count, 313, "Failed to calculate BoundaryNodes.");
+            ClassicAssert.AreEqual(boundaryNodes.Count, 313, "Failed to calculate BoundaryNodes.");
         }
 
         [Test]

@@ -11,6 +11,7 @@ using System;
 using System.Linq;
 using Autodesk.FileSystem;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Autodesk.Geometry.Test.GeometricEntities
 {
@@ -23,14 +24,14 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             DMTModel importedModel = DMTModelReader.ReadFile(new File(TestFiles.NormalStl));
 
             // Ensure that model is loaded correctly
-            Assert.AreEqual(importedModel.BoundingBox.MaxX, -54);
-            Assert.AreEqual(importedModel.BoundingBox.MaxY, 111);
-            Assert.AreEqual(importedModel.BoundingBox.MaxZ, 70);
-            Assert.AreEqual(importedModel.BoundingBox.MinX, -124);
-            Assert.AreEqual(importedModel.BoundingBox.MinY, 41);
-            Assert.AreEqual(importedModel.BoundingBox.MinZ, 0);
-            Assert.AreEqual(importedModel.TotalNoOfTriangles, 12);
-            Assert.AreEqual(importedModel.TotalNoOfVertices, 8);
+            ClassicAssert.AreEqual(importedModel.BoundingBox.MaxX, -54);
+            ClassicAssert.AreEqual(importedModel.BoundingBox.MaxY, 111);
+            ClassicAssert.AreEqual(importedModel.BoundingBox.MaxZ, 70);
+            ClassicAssert.AreEqual(importedModel.BoundingBox.MinX, -124);
+            ClassicAssert.AreEqual(importedModel.BoundingBox.MinY, 41);
+            ClassicAssert.AreEqual(importedModel.BoundingBox.MinZ, 0);
+            ClassicAssert.AreEqual(importedModel.TotalNoOfTriangles, 12);
+            ClassicAssert.AreEqual(importedModel.TotalNoOfVertices, 8);
         }
 
         [Test]
@@ -39,15 +40,15 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             DMTModel importedModel = DMTModelReader.ReadFile(new File(TestFiles.NormalDmt));
 
             // Ensure that model is loaded correctly
-            Assert.AreEqual(-54, importedModel.BoundingBox.MaxX.Value);
-            Assert.AreEqual(111, importedModel.BoundingBox.MaxY.Value);
-            Assert.AreEqual(70, importedModel.BoundingBox.MaxZ.Value);
-            Assert.AreEqual(-124, importedModel.BoundingBox.MinX.Value);
-            Assert.AreEqual(41, importedModel.BoundingBox.MinY.Value);
-            Assert.AreEqual(0, importedModel.BoundingBox.MinZ.Value);
-            Assert.AreEqual(12, importedModel.TotalNoOfTriangles);
-            Assert.AreEqual(8, importedModel.TotalNoOfVertices);
-            Assert.AreEqual(8, importedModel.TriangleBlocks.First().VertexNormals.Count);
+            ClassicAssert.AreEqual(-54, importedModel.BoundingBox.MaxX.Value);
+            ClassicAssert.AreEqual(111, importedModel.BoundingBox.MaxY.Value);
+            ClassicAssert.AreEqual(70, importedModel.BoundingBox.MaxZ.Value);
+            ClassicAssert.AreEqual(-124, importedModel.BoundingBox.MinX.Value);
+            ClassicAssert.AreEqual(41, importedModel.BoundingBox.MinY.Value);
+            ClassicAssert.AreEqual(0, importedModel.BoundingBox.MinZ.Value);
+            ClassicAssert.AreEqual(12, importedModel.TotalNoOfTriangles);
+            ClassicAssert.AreEqual(8, importedModel.TotalNoOfVertices);
+            ClassicAssert.AreEqual(8, importedModel.TriangleBlocks.First().VertexNormals.Count);
         }
 
         [Test]
@@ -56,15 +57,15 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             var inputFile = new File(TestFiles.FetchTestFile("GetTrianglesByMesh.stl"));
             DMTModel mainMesh = DMTModelReader.ReadFile(inputFile);
 
-            Assert.AreEqual(944, mainMesh.TotalNoOfTriangles);
-            Assert.AreEqual(944, mainMesh.TotalNoOfVertices);
+            ClassicAssert.AreEqual(944, mainMesh.TotalNoOfTriangles);
+            ClassicAssert.AreEqual(944, mainMesh.TotalNoOfVertices);
 
             var exportedFile = File.CreateTemporaryFile("stl", true);
             DMTModelWriter.WriteFile(mainMesh, exportedFile);
 
             DMTModel exportedMesh = DMTModelReader.ReadFile(inputFile);
-            Assert.AreEqual(944, exportedMesh.TotalNoOfTriangles);
-            Assert.AreEqual(944, exportedMesh.TotalNoOfVertices);
+            ClassicAssert.AreEqual(944, exportedMesh.TotalNoOfTriangles);
+            ClassicAssert.AreEqual(944, exportedMesh.TotalNoOfVertices);
         }
 
         [Test]
@@ -73,14 +74,14 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             var inputFile = new File(TestFiles.FetchTestFile("TwoBlocks.dmt"));
             DMTModel mainMesh = DMTModelReader.ReadFile(inputFile);
 
-            Assert.AreEqual(4, mainMesh.TotalNoOfTriangles);
-            Assert.AreEqual(8, mainMesh.TotalNoOfVertices);
-            Assert.AreEqual(-62.08, Math.Round(mainMesh.BoundingBox.MinX, 2));
-            Assert.AreEqual(78.64, Math.Round(mainMesh.BoundingBox.MaxX, 2));
-            Assert.AreEqual(5.70, Math.Round(mainMesh.BoundingBox.MinY, 2));
-            Assert.AreEqual(76.08, Math.Round(mainMesh.BoundingBox.MaxY, 2));
-            Assert.AreEqual(0, Math.Truncate(mainMesh.BoundingBox.MinZ));
-            Assert.AreEqual(0, Math.Truncate(mainMesh.BoundingBox.MaxZ));
+            ClassicAssert.AreEqual(4, mainMesh.TotalNoOfTriangles);
+            ClassicAssert.AreEqual(8, mainMesh.TotalNoOfVertices);
+            ClassicAssert.AreEqual(-62.08, Math.Round(mainMesh.BoundingBox.MinX, 2));
+            ClassicAssert.AreEqual(78.64, Math.Round(mainMesh.BoundingBox.MaxX, 2));
+            ClassicAssert.AreEqual(5.70, Math.Round(mainMesh.BoundingBox.MinY, 2));
+            ClassicAssert.AreEqual(76.08, Math.Round(mainMesh.BoundingBox.MaxY, 2));
+            ClassicAssert.AreEqual(0, Math.Truncate(mainMesh.BoundingBox.MinZ));
+            ClassicAssert.AreEqual(0, Math.Truncate(mainMesh.BoundingBox.MaxZ));
         }
     }
 }

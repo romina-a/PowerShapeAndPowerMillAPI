@@ -645,19 +645,19 @@ namespace Autodesk.Geometry
 
                 // Write header
                 string dateTimeString = null;
-                var _with1 = DateAndTime.Now;
-                dateTimeString = _with1.Day + " " + DateAndTime.MonthName(_with1.Month, true).ToUpper() + " " + _with1.Year +
+                var _with1 = DateTime.Now;
+                dateTimeString = _with1.Day + " " + DateTimeFormatInfo.CurrentInfo.GetMonthName(_with1.Month).ToUpper() + " " + _with1.Year +
                                  " " +
                                  _with1.Hour + "." + _with1.Minute + "." + _with1.Second;
-                pictureData.Append("   DuctPicture PICTURE FILE  " + file.Name + "  " + dateTimeString + Constants.vbNewLine);
+                pictureData.Append("   DuctPicture PICTURE FILE  " + file.Name + "  " + dateTimeString + Environment.NewLine);
 
                 // Write part line
                 string unitsString = "";
                 unitsString = "MM";
-                pictureData.Append(" PART:                     PowerMILL MADE IN     " + unitsString + Constants.vbNewLine);
+                pictureData.Append(" PART:                     PowerMILL MADE IN     " + unitsString + Environment.NewLine);
 
                 // Write special marker
-                pictureData.Append(" *" + Constants.vbNewLine);
+                pictureData.Append(" *" + Environment.NewLine);
 
                 // Write integer data
                 string integerLine = "";
@@ -673,23 +673,23 @@ namespace Autodesk.Geometry
                                    GetField((Count - 1) * 3 + 1, 6) + GetField(0, 6) + GetField(2, 6) + GetField(0, 6) +
                                    GetField(0, 6) + GetField(0, 6);
                 }
-                pictureData.Append(integerLine + Constants.vbNewLine);
+                pictureData.Append(integerLine + Environment.NewLine);
 
                 // Write size data
                 string sizeLine = "";
                 sizeLine += " " + GetField(0, "0.0000", 10) + GetField(0, "0.0000", 10) + GetField(0, "0.0000", 10) +
                             GetField(0, "0.0000", 10) + GetField(0, "0.0000", 10) + GetField(0, "0.0000", 10) +
                             GetField(0, "0.0000", 10);
-                pictureData.Append(sizeLine + Constants.vbNewLine);
+                pictureData.Append(sizeLine + Environment.NewLine);
 
                 // Write instruction codes
                 if (Count * 3 > 1000000)
                 {
-                    pictureData.Append(" " + GetField(2048, 11) + " " + GetField(1, 11) + Constants.vbNewLine);
+                    pictureData.Append(" " + GetField(2048, 11) + " " + GetField(1, 11) + Environment.NewLine);
                 }
                 else
                 {
-                    pictureData.Append(" " + GetField(2048, 11) + " " + GetField(1, 6) + Constants.vbNewLine);
+                    pictureData.Append(" " + GetField(2048, 11) + " " + GetField(1, 6) + Environment.NewLine);
                 }
 
                 int instructionCode = GetInstructionCode(1, 2, 0, 0, 3, 0);
@@ -697,13 +697,13 @@ namespace Autodesk.Geometry
                 if ((Count - 1) * 3 > 1000000)
                 {
                     instructionCodeString = " " + GetField(instructionCode, 11) + " " + GetField((Count - 1) * 3, 11) +
-                                            Constants.vbNewLine;
+                                            Environment.NewLine;
                     pictureData.Append(instructionCodeString);
                 }
                 else
                 {
                     instructionCodeString = " " + GetField(instructionCode, 11) + " " + GetField((Count - 1) * 3, 6) +
-                                            Constants.vbNewLine;
+                                            Environment.NewLine;
                     pictureData.Append(instructionCodeString);
                 }
 
@@ -720,7 +720,7 @@ namespace Autodesk.Geometry
                                                   before.X,
                                                   before.Y,
                                                   before.Z);
-                        pictureData.Append(pointCode + Constants.vbNewLine);
+                        pictureData.Append(pointCode + Environment.NewLine);
                     }
 
                     //Use System.Globalization.CultureInfo.InvariantCulture
@@ -729,7 +729,7 @@ namespace Autodesk.Geometry
                                               this[p].X,
                                               this[p].Y,
                                               this[p].Z);
-                    pictureData.Append(pointCode + Constants.vbNewLine);
+                    pictureData.Append(pointCode + Environment.NewLine);
                     if (p < Count - 1)
                     {
                         // Insert the after point
@@ -739,7 +739,7 @@ namespace Autodesk.Geometry
                                                   after.X,
                                                   after.Y,
                                                   after.Z);
-                        pictureData.Append(pointCode + Constants.vbNewLine);
+                        pictureData.Append(pointCode + Environment.NewLine);
                     }
                 }
 
@@ -1420,9 +1420,9 @@ namespace Autodesk.Geometry
                     }
                     FS.Close();
                 }
-                strBuff = strBuff.Replace(Strings.Chr(9).ToString(), "");
-                strBuff = strBuff.Replace(Strings.Chr(13).ToString(), "");
-                string[] strSpl = strBuff.Split(Strings.Chr(10));
+                strBuff = strBuff.Replace(((char)9).ToString(), ""); //9 -> '\t'
+                strBuff = strBuff.Replace(((char)13).ToString(), ""); //13 -> '\r'
+                string[] strSpl = strBuff.Split((char)10); //10 -> '\n'
 
                 List<List<int>> instructions = new List<List<int>>();
                 List<Point> points = new List<Point>();
@@ -1723,7 +1723,7 @@ namespace Autodesk.Geometry
             //TODO: Comment this code
 
             string tmp = Value.ToString("0");
-            tmp = Strings.Space(FieldLength - tmp.Length) + tmp;
+            tmp = new string(' ',FieldLength - tmp.Length) + tmp;
             return tmp;
         }
 
@@ -1733,7 +1733,7 @@ namespace Autodesk.Geometry
 
             //Use System.Globalization.CultureInfo.InvariantCulture
             string tmp = Value.ToString(FormatCode, CultureInfo.InvariantCulture);
-            tmp = Strings.Space(FieldLength - tmp.Length) + tmp;
+            tmp = new string(' ', FieldLength - tmp.Length) + tmp;
             return tmp;
         }
 

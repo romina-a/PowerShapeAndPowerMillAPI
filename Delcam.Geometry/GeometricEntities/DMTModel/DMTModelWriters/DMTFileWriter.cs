@@ -65,7 +65,9 @@ namespace Autodesk.Geometry
                 {
                     header = header.Substring(0, 255);
                 }
-                header += Strings.Chr(0);
+                //header += Strings.Chr(0);
+                header += '\0';
+
 
                 binaryWriter.WriteString(header);
 

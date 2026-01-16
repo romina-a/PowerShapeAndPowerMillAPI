@@ -344,9 +344,9 @@ namespace Autodesk.Geometry
                     }
                     FS.Close();
                 }
-                strBuff = strBuff.Replace(Strings.Chr(9).ToString(), "");
-                strBuff = strBuff.Replace(Strings.Chr(13).ToString(), "");
-                string[] strSpl = strBuff.Split(Strings.Chr(10));
+                strBuff = strBuff.Replace(((char)9).ToString(), ""); // 9 = '\t'
+                strBuff = strBuff.Replace(((char)13).ToString(), ""); // 13 = '\r'
+                string[] strSpl = strBuff.Split((char)10); // 10 = '\n'
 
                 List<List<int>> instructions = new List<List<int>>();
                 List<Point> points = new List<Point>();
@@ -583,19 +583,19 @@ namespace Autodesk.Geometry
 
                 // Write header
                 string dateTimeString = null;
-                var _with1 = DateAndTime.Now;
-                dateTimeString = _with1.Day + " " + DateAndTime.MonthName(_with1.Month, true).ToUpper() + " " + _with1.Year +
+                var _with1 = DateTime.Now;
+                dateTimeString = _with1.Day + " " + DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(_with1.Month).ToUpper() + " " + _with1.Year +
                                  " " +
                                  _with1.Hour + "." + _with1.Minute + "." + _with1.Second;
-                pictureData.Append("   DuctPicture PICTURE FILE  " + file.Name + "  " + dateTimeString + Constants.vbNewLine);
+                pictureData.Append("   DuctPicture PICTURE FILE  " + file.Name + "  " + dateTimeString + Environment.NewLine);
 
                 // Write part line
                 string unitsString = "";
                 unitsString = "MM";
-                pictureData.Append(" PART:                     PowerMILL MADE IN     " + unitsString + Constants.vbNewLine);
+                pictureData.Append(" PART:                     PowerMILL MADE IN     " + unitsString + Environment.NewLine);
 
                 // Write special marker
-                pictureData.Append(" *" + Constants.vbNewLine);
+                pictureData.Append(" *" + Environment.NewLine);
 
                 // Write integer data
                 string integerLine = "";
@@ -610,26 +610,26 @@ namespace Autodesk.Geometry
                     integerLine += " " + GetField(4, 6) + GetField(3, 6) + GetField(-1, 6) + GetField(1, 6) + GetField(Count, 6) +
                                    GetField(-2, 6) + GetField(2, 6) + GetField(0, 6) + GetField(0, 6) + GetField(0, 6);
                 }
-                pictureData.Append(integerLine + Constants.vbNewLine);
+                pictureData.Append(integerLine + Environment.NewLine);
 
                 // Write size data
                 string sizeLine = "";
                 sizeLine += " " + GetField(0, "0.0000", 10) + GetField(0, "0.0000", 10) + GetField(0, "0.0000", 10) +
                             GetField(0, "0.0000", 10) + GetField(0, "0.0000", 10) + GetField(0, "0.0000", 10) +
                             GetField(0, "0.0000", 10);
-                pictureData.Append(sizeLine + Constants.vbNewLine);
+                pictureData.Append(sizeLine + Environment.NewLine);
 
                 // Write instruction codes
                 int instructionCode = GetInstructionCode(1, 0, 0, 0, 0, 0);
                 string instructionCodeString = "";
                 if (trueCount > 1000000)
                 {
-                    instructionCodeString = " " + GetField(instructionCode, 11) + " " + GetField(trueCount, 11) + Constants.vbNewLine;
+                    instructionCodeString = " " + GetField(instructionCode, 11) + " " + GetField(trueCount, 11) + Environment.NewLine;
                     pictureData.Append(instructionCodeString);
                 }
                 else
                 {
-                    instructionCodeString = " " + GetField(instructionCode, 11) + " " + GetField(trueCount, 6) + Constants.vbNewLine;
+                    instructionCodeString = " " + GetField(instructionCode, 11) + " " + GetField(trueCount, 6) + Environment.NewLine;
                     pictureData.Append(instructionCodeString);
                 }
 
@@ -643,7 +643,7 @@ namespace Autodesk.Geometry
                                               this[p].X,
                                               this[p].Y,
                                               this[p].Z);
-                    pictureData.Append(pointCode + Constants.vbNewLine);
+                    pictureData.Append(pointCode + Environment.NewLine);
                 }
 
                 // If it is closed the write the first point again
@@ -654,7 +654,7 @@ namespace Autodesk.Geometry
                                               this[0].X,
                                               this[0].Y,
                                               this[0].Z);
-                    pictureData.Append(pointCode + Constants.vbNewLine);
+                    pictureData.Append(pointCode + Environment.NewLine);
                 }
 
                 // Write the file
@@ -901,7 +901,7 @@ namespace Autodesk.Geometry
             //TODO: Comment this code
 
             string tmp = Value.ToString("0");
-            tmp = Strings.Space(FieldLength - tmp.Length) + tmp;
+            tmp = new string(' ',FieldLength - tmp.Length) + tmp;
             return tmp;
         }
 
@@ -911,7 +911,7 @@ namespace Autodesk.Geometry
 
             //Use System.Globalization.CultureInfo.InvariantCulture
             string tmp = Value.ToString(FormatCode, CultureInfo.InvariantCulture);
-            tmp = Strings.Space(FieldLength - tmp.Length) + tmp;
+            tmp = new string(' ', FieldLength - tmp.Length) + tmp;
             return tmp;
         }
 

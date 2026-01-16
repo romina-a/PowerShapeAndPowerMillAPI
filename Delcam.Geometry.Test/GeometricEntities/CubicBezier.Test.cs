@@ -1,5 +1,5 @@
 // **********************************************************************
-// *         © COPYRIGHT 2018 Autodesk, Inc.All Rights Reserved         *
+// *         ï¿½ COPYRIGHT 2018 Autodesk, Inc.All Rights Reserved         *
 // *                                                                    *
 // *  Use of this software is subject to the terms of the Autodesk      *
 // *  license agreement provided at the time of installation            *
@@ -8,6 +8,7 @@
 // **********************************************************************
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Autodesk.Geometry.Test.GeometricEntities
 {
@@ -24,7 +25,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
 
             CubicBezier bezier = new CubicBezier(startPoint, endPoint, startControlPoint, endControlPoint);
 
-            Assert.AreEqual(new Point(2.8016, 2.5504, 0), bezier.Position(0.4));
+                ClassicAssert.AreEqual(new Point(2.8016, 2.5504, 0), bezier.Position(0.4));
         }
 
         [Test]
@@ -37,7 +38,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
 
             CubicBezier bezier = new CubicBezier(startPoint, endPoint, startControlPoint, endControlPoint);
 
-            Assert.AreEqual(new Vector(0.93280749948951, 0.360375039224594, 0), bezier.Tangent(0.4));
+            ClassicAssert.AreEqual(new Vector(0.93280749948951, 0.360375039224594, 0), bezier.Tangent(0.4));
         }
     }
 }

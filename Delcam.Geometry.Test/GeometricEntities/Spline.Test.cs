@@ -1,5 +1,5 @@
 // **********************************************************************
-// *         © COPYRIGHT 2018 Autodesk, Inc.All Rights Reserved         *
+// *         ï¿½ COPYRIGHT 2018 Autodesk, Inc.All Rights Reserved         *
 // *                                                                    *
 // *  Use of this software is subject to the terms of the Autodesk      *
 // *  license agreement provided at the time of installation            *
@@ -10,6 +10,7 @@
 using System;
 using System.Collections.Generic;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Autodesk.Geometry.Test.GeometricEntities
 {
@@ -21,8 +22,8 @@ namespace Autodesk.Geometry.Test.GeometricEntities
         {
             Spline splineCurve =
                 Spline.ReadFromDUCTPictureFile(
-                    new FileSystem.File(AppDomain.CurrentDomain.BaseDirectory + "\\..\\..\\TestFiles\\PicFromCompCurve.pic"))[0];
-            Assert.AreEqual(26, splineCurve.Count);
+                    new FileSystem.File(TestFiles.FetchTestFile("PicFromCompCurve.pic")))[0];
+            ClassicAssert.AreEqual(26, splineCurve.Count);
         }
 
         [Test]
@@ -40,24 +41,24 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             splineCurve.WriteToDUCTPictureFile(tempFile);
             Spline resultSpline = Spline.ReadFromDUCTPictureFile(tempFile)[0];
             tempFile.Delete();
-            Assert.AreEqual(splineCurve.Count, resultSpline.Count);
-            Assert.AreEqual(splineCurve[0].X.Value, resultSpline[0].X.Value);
-            Assert.AreEqual(splineCurve[0].Y.Value, resultSpline[0].Y.Value);
-            Assert.AreEqual(splineCurve[0].Z.Value, resultSpline[0].Z.Value);
-            Assert.AreEqual(splineCurve[1].X.Value, resultSpline[1].X.Value);
-            Assert.AreEqual(splineCurve[1].Y.Value, resultSpline[1].Y.Value);
-            Assert.AreEqual(splineCurve[1].Z.Value, resultSpline[1].Z.Value);
-            Assert.AreEqual(splineCurve[2].X.Value, resultSpline[2].X.Value);
-            Assert.AreEqual(splineCurve[2].Y.Value, resultSpline[2].Y.Value);
-            Assert.AreEqual(splineCurve[2].Z.Value, resultSpline[2].Z.Value);
-            Assert.IsTrue(splineCurve[0].DirectionAfter.Equals(resultSpline[0].DirectionAfter, 5));
-            Assert.IsTrue(splineCurve[0].MagnitudeAfter.Equals(resultSpline[0].MagnitudeAfter, 5));
-            Assert.IsTrue(splineCurve[1].DirectionBefore.Equals(resultSpline[1].DirectionBefore, 5));
-            Assert.IsTrue(splineCurve[1].DirectionAfter.Equals(resultSpline[1].DirectionAfter, 5));
-            Assert.IsTrue(splineCurve[1].MagnitudeBefore.Equals(resultSpline[1].MagnitudeBefore, 5));
-            Assert.IsTrue(splineCurve[1].MagnitudeAfter.Equals(resultSpline[1].MagnitudeAfter, 4));
-            Assert.IsTrue(splineCurve[2].DirectionBefore.Equals(resultSpline[2].DirectionBefore, 5));
-            Assert.IsTrue(splineCurve[2].MagnitudeBefore.Equals(resultSpline[2].MagnitudeBefore, 5));
+            ClassicAssert.AreEqual(splineCurve.Count, resultSpline.Count);
+            ClassicAssert.AreEqual(splineCurve[0].X.Value, resultSpline[0].X.Value);
+            ClassicAssert.AreEqual(splineCurve[0].Y.Value, resultSpline[0].Y.Value);
+            ClassicAssert.AreEqual(splineCurve[0].Z.Value, resultSpline[0].Z.Value);
+            ClassicAssert.AreEqual(splineCurve[1].X.Value, resultSpline[1].X.Value);
+            ClassicAssert.AreEqual(splineCurve[1].Y.Value, resultSpline[1].Y.Value);
+            ClassicAssert.AreEqual(splineCurve[1].Z.Value, resultSpline[1].Z.Value);
+            ClassicAssert.AreEqual(splineCurve[2].X.Value, resultSpline[2].X.Value);
+            ClassicAssert.AreEqual(splineCurve[2].Y.Value, resultSpline[2].Y.Value);
+            ClassicAssert.AreEqual(splineCurve[2].Z.Value, resultSpline[2].Z.Value);
+            ClassicAssert.IsTrue(splineCurve[0].DirectionAfter.Equals(resultSpline[0].DirectionAfter, 5));
+            ClassicAssert.IsTrue(splineCurve[0].MagnitudeAfter.Equals(resultSpline[0].MagnitudeAfter, 5));
+            ClassicAssert.IsTrue(splineCurve[1].DirectionBefore.Equals(resultSpline[1].DirectionBefore, 5));
+            ClassicAssert.IsTrue(splineCurve[1].DirectionAfter.Equals(resultSpline[1].DirectionAfter, 5));
+            ClassicAssert.IsTrue(splineCurve[1].MagnitudeBefore.Equals(resultSpline[1].MagnitudeBefore, 5));
+            ClassicAssert.IsTrue(splineCurve[1].MagnitudeAfter.Equals(resultSpline[1].MagnitudeAfter, 4));
+            ClassicAssert.IsTrue(splineCurve[2].DirectionBefore.Equals(resultSpline[2].DirectionBefore, 5));
+            ClassicAssert.IsTrue(splineCurve[2].MagnitudeBefore.Equals(resultSpline[2].MagnitudeBefore, 5));
         }
 
         [Test]
@@ -71,12 +72,12 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             splineCurve.FreeCurveDirections();
             splineCurve.FreeCurveMagnitudes();
 
-            Assert.AreEqual(new Point(0, 0, 0), splineCurve.GetSpanControlPoint(0, 0));
-            Assert.AreEqual(new Point(10, 5, 2), splineCurve.GetSpanControlPoint(0, 3));
+            ClassicAssert.AreEqual(new Point(0, 0, 0), splineCurve.GetSpanControlPoint(0, 0));
+            ClassicAssert.AreEqual(new Point(10, 5, 2), splineCurve.GetSpanControlPoint(0, 3));
 
-            Assert.AreEqual(splineCurve.GetSpanControlPoint(0, 1),
+            ClassicAssert.AreEqual(splineCurve.GetSpanControlPoint(0, 1),
                             splineCurve[0] + splineCurve[0].DirectionAfter * splineCurve[0].MagnitudeAfter);
-            Assert.AreEqual(splineCurve.GetSpanControlPoint(0, 2),
+            ClassicAssert.AreEqual(splineCurve.GetSpanControlPoint(0, 2),
                             splineCurve[1] - splineCurve[1].DirectionBefore * splineCurve[1].MagnitudeBefore);
         }
 
@@ -85,55 +86,50 @@ namespace Autodesk.Geometry.Test.GeometricEntities
         {
             Spline spline =
                 Spline.ReadFromDUCTPictureFile(
-                    new FileSystem.File(AppDomain.CurrentDomain.BaseDirectory +
-                                        "\\..\\..\\TestFiles\\SplineTestFiles\\RawPoints.pic"))[0];
+                    new FileSystem.File(TestFiles.FetchTestFile("RawPoints.pic")))[0];
             spline.FreeCurveDirections();
             spline.FreeCurveMagnitudes();
 
             Spline splineCopy =
                 Spline.ReadFromDUCTPictureFile(
-                    new FileSystem.File(AppDomain.CurrentDomain.BaseDirectory +
-                                        "\\..\\..\\TestFiles\\SplineTestFiles\\RawPoints.pic"))[0];
+                    new FileSystem.File(TestFiles.FetchTestFile("RawPoints.pic")))[0];
             splineCopy.FreeCurveDirections();
             splineCopy.FreeCurveMagnitudes();
 
             splineCopy.SetSpanControlPoint(new Point(9, 9, 0), 0, 0);
-            Assert.IsTrue(spline.GetBezierCurve(0).StartControlPoint.Equals(splineCopy.GetBezierCurve(0).StartControlPoint, 5));
-            Assert.IsTrue(spline.GetBezierCurve(0).EndControlPoint.Equals(splineCopy.GetBezierCurve(0).EndControlPoint, 5));
-            Assert.IsTrue(spline.GetBezierCurve(0).EndPoint.Equals(splineCopy.GetBezierCurve(0).EndPoint, 5));
+            ClassicAssert.IsTrue(spline.GetBezierCurve(0).StartControlPoint.Equals(splineCopy.GetBezierCurve(0).StartControlPoint, 5));
+            ClassicAssert.IsTrue(spline.GetBezierCurve(0).EndControlPoint.Equals(splineCopy.GetBezierCurve(0).EndControlPoint, 5));
+            ClassicAssert.IsTrue(spline.GetBezierCurve(0).EndPoint.Equals(splineCopy.GetBezierCurve(0).EndPoint, 5));
 
             splineCopy =
                 Spline.ReadFromDUCTPictureFile(
-                    new FileSystem.File(AppDomain.CurrentDomain.BaseDirectory +
-                                        "\\..\\..\\TestFiles\\SplineTestFiles\\RawPoints.pic"))[0];
+                    new FileSystem.File(TestFiles.FetchTestFile("RawPoints.pic")))[0];
             splineCopy.FreeCurveDirections();
             splineCopy.FreeCurveMagnitudes();
             splineCopy.SetSpanControlPoint(new Point(9, 9, 0), 0, 1);
-            Assert.IsTrue(spline.GetBezierCurve(0).StartPoint.Equals(splineCopy.GetBezierCurve(0).StartPoint, 5));
-            Assert.IsTrue(spline.GetBezierCurve(0).EndControlPoint.Equals(splineCopy.GetBezierCurve(0).EndControlPoint, 5));
-            Assert.IsTrue(spline.GetBezierCurve(0).EndPoint.Equals(splineCopy.GetBezierCurve(0).EndPoint, 5));
+            ClassicAssert.IsTrue(spline.GetBezierCurve(0).StartPoint.Equals(splineCopy.GetBezierCurve(0).StartPoint, 5));
+            ClassicAssert.IsTrue(spline.GetBezierCurve(0).EndControlPoint.Equals(splineCopy.GetBezierCurve(0).EndControlPoint, 5));
+            ClassicAssert.IsTrue(spline.GetBezierCurve(0).EndPoint.Equals(splineCopy.GetBezierCurve(0).EndPoint, 5));
 
             splineCopy =
                 Spline.ReadFromDUCTPictureFile(
-                    new FileSystem.File(AppDomain.CurrentDomain.BaseDirectory +
-                                        "\\..\\..\\TestFiles\\SplineTestFiles\\RawPoints.pic"))[0];
+                    new FileSystem.File(TestFiles.FetchTestFile("RawPoints.pic")))[0];
             splineCopy.FreeCurveDirections();
             splineCopy.FreeCurveMagnitudes();
             splineCopy.SetSpanControlPoint(new Point(9, 9, 0), 0, 2);
-            Assert.IsTrue(spline.GetBezierCurve(0).StartPoint.Equals(splineCopy.GetBezierCurve(0).StartPoint, 5));
-            Assert.IsTrue(spline.GetBezierCurve(0).StartControlPoint.Equals(splineCopy.GetBezierCurve(0).StartControlPoint, 5));
-            Assert.IsTrue(spline.GetBezierCurve(0).EndPoint.Equals(splineCopy.GetBezierCurve(0).EndPoint, 5));
+            ClassicAssert.IsTrue(spline.GetBezierCurve(0).StartPoint.Equals(splineCopy.GetBezierCurve(0).StartPoint, 5));
+            ClassicAssert.IsTrue(spline.GetBezierCurve(0).StartControlPoint.Equals(splineCopy.GetBezierCurve(0).StartControlPoint, 5));
+            ClassicAssert.IsTrue(spline.GetBezierCurve(0).EndPoint.Equals(splineCopy.GetBezierCurve(0).EndPoint, 5));
 
             splineCopy =
                 Spline.ReadFromDUCTPictureFile(
-                    new FileSystem.File(AppDomain.CurrentDomain.BaseDirectory +
-                                        "\\..\\..\\TestFiles\\SplineTestFiles\\RawPoints.pic"))[0];
+                    new FileSystem.File(TestFiles.FetchTestFile("RawPoints.pic")))[0];
             splineCopy.FreeCurveDirections();
             splineCopy.FreeCurveMagnitudes();
             splineCopy.SetSpanControlPoint(new Point(9, 9, 0), 0, 3);
-            Assert.IsTrue(spline.GetBezierCurve(0).StartPoint.Equals(splineCopy.GetBezierCurve(0).StartPoint, 5));
-            Assert.IsTrue(spline.GetBezierCurve(0).StartControlPoint.Equals(splineCopy.GetBezierCurve(0).StartControlPoint, 5));
-            Assert.IsTrue(spline.GetBezierCurve(0).EndControlPoint.Equals(splineCopy.GetBezierCurve(0).EndControlPoint, 5));
+            ClassicAssert.IsTrue(spline.GetBezierCurve(0).StartPoint.Equals(splineCopy.GetBezierCurve(0).StartPoint, 5));
+            ClassicAssert.IsTrue(spline.GetBezierCurve(0).StartControlPoint.Equals(splineCopy.GetBezierCurve(0).StartControlPoint, 5));
+            ClassicAssert.IsTrue(spline.GetBezierCurve(0).EndControlPoint.Equals(splineCopy.GetBezierCurve(0).EndControlPoint, 5));
         }
 
         [Test]
@@ -151,10 +147,10 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             spline.Add(splineEndPoint);
 
             CubicBezier splineAsBezier = spline.GetBezierCurve(0);
-            Assert.AreEqual(startPoint, splineAsBezier.StartPoint);
-            Assert.AreEqual(startControl, splineAsBezier.StartControlPoint);
-            Assert.AreEqual(endPoint, splineAsBezier.EndPoint);
-            Assert.AreEqual(endControl, splineAsBezier.EndControlPoint);
+            ClassicAssert.AreEqual(startPoint, splineAsBezier.StartPoint);
+            ClassicAssert.AreEqual(startControl, splineAsBezier.StartControlPoint);
+            ClassicAssert.AreEqual(endPoint, splineAsBezier.EndPoint);
+            ClassicAssert.AreEqual(endControl, splineAsBezier.EndControlPoint);
         }
 
         [Test]
@@ -162,25 +158,23 @@ namespace Autodesk.Geometry.Test.GeometricEntities
         {
             Spline spline =
                 Spline.ReadFromDUCTPictureFile(
-                    new FileSystem.File(AppDomain.CurrentDomain.BaseDirectory +
-                                        "\\..\\..\\TestFiles\\SplineTestFiles\\RawPoints.pic"))[0];
+                    new FileSystem.File(TestFiles.FetchTestFile("RawPoints.pic")))[0];
             spline.FreeCurveDirections();
 
             Spline splineProcessedByPowershape =
                 Spline.ReadFromDUCTPictureFile(
-                    new FileSystem.File(AppDomain.CurrentDomain.BaseDirectory +
-                                        "\\..\\..\\TestFiles\\SplineTestFiles\\FreedByPowershape.pic"))[0];
+                    new FileSystem.File(TestFiles.FetchTestFile("FreedByPowershape.pic")))[0];
 
             // Compare the directions
-            Assert.IsTrue(spline[0].DirectionAfter.Equals(splineProcessedByPowershape[0].DirectionAfter, 5));
-            Assert.IsTrue(
+            ClassicAssert.IsTrue(spline[0].DirectionAfter.Equals(splineProcessedByPowershape[0].DirectionAfter, 5));
+            ClassicAssert.IsTrue(
                 spline[spline.Count - 1].DirectionBefore.Equals(
                     splineProcessedByPowershape[splineProcessedByPowershape.Count - 1].DirectionBefore,
                     5));
             for (int i = 1; i <= spline.Count - 2; i++)
             {
-                Assert.IsTrue(spline[i].DirectionBefore.Equals(splineProcessedByPowershape[i].DirectionBefore, 5));
-                Assert.IsTrue(spline[i].DirectionAfter.Equals(splineProcessedByPowershape[i].DirectionAfter, 5));
+                ClassicAssert.IsTrue(spline[i].DirectionBefore.Equals(splineProcessedByPowershape[i].DirectionBefore, 5));
+                ClassicAssert.IsTrue(spline[i].DirectionAfter.Equals(splineProcessedByPowershape[i].DirectionAfter, 5));
             }
         }
 
@@ -189,25 +183,23 @@ namespace Autodesk.Geometry.Test.GeometricEntities
         {
             Spline spline =
                 Spline.ReadFromDUCTPictureFile(
-                    new FileSystem.File(AppDomain.CurrentDomain.BaseDirectory +
-                                        "\\..\\..\\TestFiles\\SplineTestFiles\\RawPoints.pic"))[0];
+                    new FileSystem.File(TestFiles.FetchTestFile("RawPoints.pic")))[0];
             spline.FreeCurveDirections();
             spline.FreeCurveMagnitudes();
 
             Spline splineProcessedByPowershape =
                 Spline.ReadFromDUCTPictureFile(
-                    new FileSystem.File(AppDomain.CurrentDomain.BaseDirectory +
-                                        "\\..\\..\\TestFiles\\SplineTestFiles\\FreedByPowershape.pic"))[0];
+                    new FileSystem.File(TestFiles.FetchTestFile("FreedByPowershape.pic")))[0];
 
             // Compare the magnitudes
-            Assert.AreEqual(spline[0].MagnitudeAfter.Value, splineProcessedByPowershape[0].MagnitudeAfter.Value, 1E-05);
-            Assert.AreEqual(spline[spline.Count - 1].MagnitudeBefore.Value,
+            ClassicAssert.AreEqual(spline[0].MagnitudeAfter.Value, splineProcessedByPowershape[0].MagnitudeAfter.Value, 1E-05);
+            ClassicAssert.AreEqual(spline[spline.Count - 1].MagnitudeBefore.Value,
                             splineProcessedByPowershape[spline.Count - 1].MagnitudeBefore.Value,
                             1E-05);
             for (int i = 1; i <= spline.Count - 2; i++)
             {
-                Assert.AreEqual(spline[i].MagnitudeBefore.Value, splineProcessedByPowershape[i].MagnitudeBefore.Value, 1E-05);
-                Assert.AreEqual(spline[i].MagnitudeAfter.Value, splineProcessedByPowershape[i].MagnitudeAfter.Value, 1E-05);
+                ClassicAssert.AreEqual(spline[i].MagnitudeBefore.Value, splineProcessedByPowershape[i].MagnitudeBefore.Value, 1E-05);
+                ClassicAssert.AreEqual(spline[i].MagnitudeAfter.Value, splineProcessedByPowershape[i].MagnitudeAfter.Value, 1E-05);
             }
         }
 
@@ -216,13 +208,11 @@ namespace Autodesk.Geometry.Test.GeometricEntities
         {
             Spline splineProcessedByPowershape =
                 Spline.ReadFromDUCTPictureFile(
-                    new FileSystem.File(AppDomain.CurrentDomain.BaseDirectory +
-                                        "\\..\\..\\TestFiles\\SplineTestFiles\\FreedByPowershape.pic"))[0];
+                    new FileSystem.File(TestFiles.FetchTestFile("FreedByPowershape.pic")))[0];
 
             Spline spline1 =
                 Spline.ReadFromDUCTPictureFile(
-                    new FileSystem.File(AppDomain.CurrentDomain.BaseDirectory +
-                                        "\\..\\..\\TestFiles\\SplineTestFiles\\RawPoints.pic"))[0];
+                    new FileSystem.File(TestFiles.FetchTestFile("RawPoints.pic")))[0];
             spline1.FreeCurveDirections();
             for (int i = 0; i <= spline1.Count - 1; i++)
             {
@@ -230,14 +220,14 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             }
 
             // Compare the magnitudes
-            Assert.AreEqual(spline1[0].MagnitudeAfter.Value, splineProcessedByPowershape[0].MagnitudeAfter.Value, 0.0001);
-            Assert.AreEqual(spline1[spline1.Count - 1].MagnitudeBefore.Value,
+            ClassicAssert.AreEqual(spline1[0].MagnitudeAfter.Value, splineProcessedByPowershape[0].MagnitudeAfter.Value, 0.0001);
+            ClassicAssert.AreEqual(spline1[spline1.Count - 1].MagnitudeBefore.Value,
                             splineProcessedByPowershape[spline1.Count - 1].MagnitudeBefore.Value,
                             0.0001);
             for (int i = 1; i <= spline1.Count - 2; i++)
             {
-                Assert.AreEqual(spline1[i].MagnitudeBefore.Value, splineProcessedByPowershape[i].MagnitudeBefore.Value, 0.0001);
-                Assert.AreEqual(spline1[i].MagnitudeAfter.Value, splineProcessedByPowershape[i].MagnitudeAfter.Value, 0.0001);
+                ClassicAssert.AreEqual(spline1[i].MagnitudeBefore.Value, splineProcessedByPowershape[i].MagnitudeBefore.Value, 0.0001);
+                ClassicAssert.AreEqual(spline1[i].MagnitudeAfter.Value, splineProcessedByPowershape[i].MagnitudeAfter.Value, 0.0001);
             }
         }
 
@@ -246,8 +236,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
         {
             Spline spline =
                 Spline.ReadFromDUCTPictureFile(
-                    new FileSystem.File(AppDomain.CurrentDomain.BaseDirectory +
-                                        "\\..\\..\\TestFiles\\SplineTestFiles\\RawPoints.pic"))[0];
+                    new FileSystem.File(TestFiles.FetchTestFile("RawPoints.pic")))[0];
             spline.FreeCurveDirections();
             spline.FreeCurveMagnitudes();
 
@@ -258,19 +247,19 @@ namespace Autodesk.Geometry.Test.GeometricEntities
                 splineByExtension.AddPointToEndOfSpline(point.Clone(), true);
             }
 
-            Assert.AreEqual(spline[0].MagnitudeAfter, splineByExtension[0].MagnitudeAfter);
-            Assert.AreEqual(spline[spline.Count - 1].MagnitudeBefore, splineByExtension[spline.Count - 1].MagnitudeBefore);
+            ClassicAssert.AreEqual(spline[0].MagnitudeAfter, splineByExtension[0].MagnitudeAfter);
+            ClassicAssert.AreEqual(spline[spline.Count - 1].MagnitudeBefore, splineByExtension[spline.Count - 1].MagnitudeBefore);
             for (int i = 1; i <= spline.Count - 2; i++)
             {
-                Assert.AreEqual(spline[i].MagnitudeBefore, splineByExtension[i].MagnitudeBefore);
-                Assert.AreEqual(spline[i].MagnitudeAfter, splineByExtension[i].MagnitudeAfter);
+                ClassicAssert.AreEqual(spline[i].MagnitudeBefore, splineByExtension[i].MagnitudeBefore);
+                ClassicAssert.AreEqual(spline[i].MagnitudeAfter, splineByExtension[i].MagnitudeAfter);
             }
-            Assert.AreEqual(spline[0].DirectionAfter, splineByExtension[0].DirectionAfter);
-            Assert.AreEqual(spline[spline.Count - 1].DirectionBefore, splineByExtension[spline.Count - 1].DirectionBefore);
+            ClassicAssert.AreEqual(spline[0].DirectionAfter, splineByExtension[0].DirectionAfter);
+            ClassicAssert.AreEqual(spline[spline.Count - 1].DirectionBefore, splineByExtension[spline.Count - 1].DirectionBefore);
             for (int i = 1; i <= spline.Count - 2; i++)
             {
-                Assert.AreEqual(spline[i].DirectionBefore, splineByExtension[i].DirectionBefore);
-                Assert.AreEqual(spline[i].DirectionAfter, splineByExtension[i].DirectionAfter);
+                ClassicAssert.AreEqual(spline[i].DirectionBefore, splineByExtension[i].DirectionBefore);
+                ClassicAssert.AreEqual(spline[i].DirectionAfter, splineByExtension[i].DirectionAfter);
             }
         }
 
@@ -284,15 +273,15 @@ namespace Autodesk.Geometry.Test.GeometricEntities
 
             spline.Reverse();
 
-            Assert.AreEqual(3, spline.Count);
+            ClassicAssert.AreEqual(3, spline.Count);
 
-            Assert.AreEqual((MM) (-0.6), spline[2].DirectionBefore.I);
-            Assert.AreEqual((MM) (-0.6), spline[2].DirectionBefore.J);
-            Assert.AreEqual((MM) (-0.6), spline[2].DirectionBefore.K);
+            ClassicAssert.AreEqual((MM) (-0.6), spline[2].DirectionBefore.I);
+            ClassicAssert.AreEqual((MM) (-0.6), spline[2].DirectionBefore.J);
+            ClassicAssert.AreEqual((MM) (-0.6), spline[2].DirectionBefore.K);
 
-            Assert.AreEqual((MM) 1, spline[0].DirectionAfter.I);
-            Assert.AreEqual((MM) 1, spline[0].DirectionAfter.J);
-            Assert.AreEqual((MM) 1, spline[0].DirectionAfter.K);
+            ClassicAssert.AreEqual((MM) 1, spline[0].DirectionAfter.I);
+            ClassicAssert.AreEqual((MM) 1, spline[0].DirectionAfter.J);
+            ClassicAssert.AreEqual((MM) 1, spline[0].DirectionAfter.K);
         }
 
         [Test]
@@ -305,15 +294,15 @@ namespace Autodesk.Geometry.Test.GeometricEntities
 
             spline.Reverse(1, 2);
 
-            Assert.AreEqual(3, spline.Count);
+            ClassicAssert.AreEqual(3, spline.Count);
 
-            Assert.AreEqual((MM) 0.0, spline[2].DirectionBefore.I);
-            Assert.AreEqual((MM) (-1), spline[2].DirectionBefore.J);
-            Assert.AreEqual((MM) 0, spline[2].DirectionBefore.K);
+            ClassicAssert.AreEqual((MM) 0.0, spline[2].DirectionBefore.I);
+            ClassicAssert.AreEqual((MM) (-1), spline[2].DirectionBefore.J);
+            ClassicAssert.AreEqual((MM) 0, spline[2].DirectionBefore.K);
 
-            Assert.AreEqual((MM) 0.6, spline[0].DirectionAfter.I);
-            Assert.AreEqual((MM) 0.6, spline[0].DirectionAfter.J);
-            Assert.AreEqual((MM) 0.6, spline[0].DirectionAfter.K);
+            ClassicAssert.AreEqual((MM) 0.6, spline[0].DirectionAfter.I);
+            ClassicAssert.AreEqual((MM) 0.6, spline[0].DirectionAfter.J);
+            ClassicAssert.AreEqual((MM) 0.6, spline[0].DirectionAfter.K);
         }
     }
 }

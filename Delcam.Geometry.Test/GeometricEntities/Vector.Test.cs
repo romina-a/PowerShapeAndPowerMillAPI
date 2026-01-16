@@ -1,5 +1,5 @@
 // **********************************************************************
-// *         © COPYRIGHT 2018 Autodesk, Inc.All Rights Reserved         *
+// *         ï¿½ COPYRIGHT 2018 Autodesk, Inc.All Rights Reserved         *
 // *                                                                    *
 // *  Use of this software is subject to the terms of the Autodesk      *
 // *  license agreement provided at the time of installation            *
@@ -10,6 +10,7 @@
 using System;
 using Autodesk.Geometry.Euler;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Autodesk.Geometry.Test.GeometricEntities
 {
@@ -51,13 +52,13 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             expected = Math.Sqrt(29);
 
             actual = target.Magnitude;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
 
             target = new Vector(-2.0, -3.0, -4.0);
             expected = Math.Sqrt(29);
 
             actual = target.Magnitude;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -71,7 +72,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             MM actual = default(MM);
             target.I = expected;
             actual = target.I;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -85,7 +86,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             MM actual = default(MM);
             target.J = expected;
             actual = target.J;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -99,7 +100,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             MM actual = default(MM);
             target.K = expected;
             actual = target.K;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -119,7 +120,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             expected = new Vector(-3.0, 2.0, 1.0);
 
             target.RotateAboutZAxis(angleRadian);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
 
             // Rotate by 90degrees
             target = new Vector(2.0, 3.0, 1.0);
@@ -127,7 +128,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             expected = new Vector(-3.0, 2.0, 1.0);
 
             target.RotateAboutZAxis(angleDegree);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
 
             // Rotate by PI
             target = new Vector(2.0, 3.0, 1.0);
@@ -135,7 +136,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             expected = new Vector(-2.0, -3.0, 1.0);
 
             target.RotateAboutZAxis(angleRadian);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
 
             // Rotate by 180degrees
             target = new Vector(2.0, 3.0, 1.0);
@@ -143,7 +144,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             expected = new Vector(-2.0, -3.0, 1.0);
 
             target.RotateAboutZAxis(angleDegree);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
 
             // Rotate by -PI/2
             target = new Vector(2.0, 3.0, 1.0);
@@ -151,7 +152,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             expected = new Vector(3.0, -2.0, 1.0);
 
             target.RotateAboutZAxis(angleRadian);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
 
             // Rotate by -90degrees
             target = new Vector(2.0, 3.0, 1.0);
@@ -159,7 +160,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             expected = new Vector(3.0, -2.0, 1.0);
 
             target.RotateAboutZAxis(angleDegree);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
 
             // Rotate by -PI
             target = new Vector(2.0, 3.0, 1.0);
@@ -167,7 +168,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             expected = new Vector(-2.0, -3.0, 1.0);
 
             target.RotateAboutZAxis(angleRadian);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
 
             // Rotate by -180degrees
             target = new Vector(2.0, 3.0, 1.0);
@@ -175,7 +176,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             expected = new Vector(-2.0, -3.0, 1.0);
 
             target.RotateAboutZAxis(angleDegree);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
         }
 
         /// <summary>
@@ -195,7 +196,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             expected = new Vector(3.0, 1.0, -2.0);
 
             target.RotateAboutYAxis(angleRadian);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
 
             // Rotate by 90degrees
             target = new Vector(2.0, 1.0, 3.0);
@@ -203,7 +204,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             expected = new Vector(3.0, 1.0, -2.0);
 
             target.RotateAboutYAxis(angleDegree);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
 
             // Rotate by PI
             target = new Vector(2.0, 1.0, 3.0);
@@ -211,7 +212,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             expected = new Vector(-2.0, 1.0, -3.0);
 
             target.RotateAboutYAxis(angleRadian);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
 
             // Rotate by 180degrees
             target = new Vector(2.0, 1.0, 3.0);
@@ -219,7 +220,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             expected = new Vector(-2.0, 1.0, -3.0);
 
             target.RotateAboutYAxis(angleDegree);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
 
             // Rotate by -PI/2
             target = new Vector(2.0, 1.0, 3.0);
@@ -227,7 +228,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             expected = new Vector(-3.0, 1.0, 2.0);
 
             target.RotateAboutYAxis(angleRadian);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
 
             // Rotate by -90degrees
             target = new Vector(2.0, 1.0, 3.0);
@@ -235,7 +236,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             expected = new Vector(-3.0, 1.0, 2.0);
 
             target.RotateAboutYAxis(angleDegree);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
 
             // Rotate by -PI
             target = new Vector(2.0, 1.0, 3.0);
@@ -243,7 +244,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             expected = new Vector(-2.0, 1.0, -3.0);
 
             target.RotateAboutYAxis(angleRadian);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
 
             // Rotate by -180degrees
             target = new Vector(2.0, 1.0, 3.0);
@@ -251,7 +252,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             expected = new Vector(-2.0, 1.0, -3.0);
 
             target.RotateAboutYAxis(angleDegree);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
         }
 
         /// <summary>
@@ -271,7 +272,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             expected = new Vector(1.0, -3.0, 2.0);
 
             target.RotateAboutXAxis(angleRadian);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
 
             // Rotate by 90degrees
             target = new Vector(1.0, 2.0, 3.0);
@@ -279,7 +280,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             expected = new Vector(1.0, -3.0, 2.0);
 
             target.RotateAboutXAxis(angleDegree);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
 
             // Rotate by PI
             target = new Vector(1.0, 2.0, 3.0);
@@ -287,7 +288,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             expected = new Vector(1.0, -2.0, -3.0);
 
             target.RotateAboutXAxis(angleRadian);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
 
             // Rotate by 180degrees
             target = new Vector(1.0, 2.0, 3.0);
@@ -295,7 +296,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             expected = new Vector(1.0, -2.0, -3.0);
 
             target.RotateAboutXAxis(angleDegree);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
 
             // Rotate by -PI/2
             target = new Vector(1.0, 2.0, 3.0);
@@ -303,7 +304,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             expected = new Vector(1.0, 3.0, -2.0);
 
             target.RotateAboutXAxis(angleRadian);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
 
             // Rotate by -90degrees
             target = new Vector(1.0, 2.0, 3.0);
@@ -311,7 +312,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             expected = new Vector(1.0, 3.0, -2.0);
 
             target.RotateAboutXAxis(angleDegree);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
 
             // Rotate by -PI
             target = new Vector(1.0, 2.0, 3.0);
@@ -319,7 +320,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             expected = new Vector(1.0, -2.0, -3.0);
 
             target.RotateAboutXAxis(angleRadian);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
 
             // Rotate by -180degrees
             target = new Vector(1.0, 2.0, 3.0);
@@ -327,7 +328,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             expected = new Vector(1.0, -2.0, -3.0);
 
             target.RotateAboutXAxis(angleDegree);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
         }
 
         /// <summary>
@@ -349,7 +350,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             expected = new Vector(3.0, 2.0, 1.0);
 
             target.RotateAboutVector(vectorToRotateAbout, angleRadian);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
 
             // Rotate by 180degrees
             target = new Vector(1.0, 2.0, 3.0);
@@ -358,7 +359,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             expected = new Vector(3.0, 2.0, 1.0);
 
             target.RotateAboutVector(vectorToRotateAbout, angleDegree);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
         }
 
         /// <summary>
@@ -375,7 +376,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             Vector expected = new Vector(1.0, 2.0, 3.0);
 
             target.RebaseFromWorkplane(workplane);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
         }
 
         /// <summary>
@@ -392,7 +393,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             Vector expected = new Vector(-1.0, -2.0, -3.0);
 
             target.RebaseToWorkplane(workplane);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
         }
 
         /// <summary>
@@ -407,7 +408,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
 
             Vector actual = null;
             actual = left - right;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -422,7 +423,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
 
             MM actual = default(MM);
             actual = Vector.DotProduct(left, right);
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -437,10 +438,10 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             Vector actual = null;
 
             actual = vectorToScale * scalar;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
 
             actual = scalar * vectorToScale;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -459,11 +460,11 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             expected = true;
 
             actual = left != right;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
 
             actual = left != left;
             expected = false;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -478,7 +479,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             Vector actual = null;
 
             actual = Vector.CrossProduct(left, right);
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -497,11 +498,11 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             expected = false;
 
             actual = left == right;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
 
             actual = left == left;
             expected = true;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -516,7 +517,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             Vector actual = null;
 
             actual = left / scalar;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -531,7 +532,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
 
             Vector actual = null;
             actual = left + right;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -545,7 +546,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
 
             target.Normalize();
             MM actual = target.Magnitude;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -562,8 +563,8 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             Vector yVector = null;
             Vector yVectorExpected = new Vector(0.0, 1.0, 0.0);
             target.GetXYVectors(ref xVector, ref yVector);
-            Assert.AreEqual(xVectorExpected, xVector);
-            Assert.AreEqual(yVectorExpected, yVector);
+            ClassicAssert.AreEqual(xVectorExpected, xVector);
+            ClassicAssert.AreEqual(yVectorExpected, yVector);
         }
 
         /// <summary>
@@ -575,7 +576,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             Vector target = new Vector(2, 3, 4);
             Euler.Angles angle = new Euler.Angles(0.5, 0.6, 0.7, Conventions.XYX);
             target.EulerRotation(angle);
-            Assert.IsTrue(new Vector(4.44486484901456, -1.35675116542822, 2.72073569997234).Equals(target, 12));
+            ClassicAssert.IsTrue(new Vector(4.44486484901456, -1.35675116542822, 2.72073569997234).Equals(target, 12));
         }
 
         /// <summary>
@@ -588,7 +589,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             Vector expected = new Vector(1.0, 2.0, 3.0);
             Vector actual = null;
             actual = target.Clone();
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -602,7 +603,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             Radian expected = Math.PI;
             Radian actual = default(Radian);
             actual = target.AngleTo(otherVector);
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -616,7 +617,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             Radian expected = Math.PI;
             Radian actual = default(Radian);
             actual = target.AngleBetween(otherVector);
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -629,9 +630,9 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             MM j = 0.0;
             MM k = 0.0;
             Vector target = new Vector();
-            Assert.AreEqual(i, target.I);
-            Assert.AreEqual(j, target.J);
-            Assert.AreEqual(k, target.K);
+            ClassicAssert.AreEqual(i, target.I);
+            ClassicAssert.AreEqual(j, target.J);
+            ClassicAssert.AreEqual(k, target.K);
         }
 
         /// <summary>
@@ -645,9 +646,9 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             MM k = 4.0;
             Vector target = new Vector(i, j, k);
 
-            Assert.AreEqual(i, target.I);
-            Assert.AreEqual(j, target.J);
-            Assert.AreEqual(k, target.K);
+            ClassicAssert.AreEqual(i, target.I);
+            ClassicAssert.AreEqual(j, target.J);
+            ClassicAssert.AreEqual(k, target.K);
         }
 
         /// <summary>
@@ -667,9 +668,9 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             };
             Vector target = new Vector(componentArray);
 
-            Assert.AreEqual(i, target.I);
-            Assert.AreEqual(j, target.J);
-            Assert.AreEqual(k, target.K);
+            ClassicAssert.AreEqual(i, target.I);
+            ClassicAssert.AreEqual(j, target.J);
+            ClassicAssert.AreEqual(k, target.K);
         }
 
         #endregion

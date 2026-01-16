@@ -7,11 +7,12 @@
 // *  in either electronic or hard copy form.                           *
 // **********************************************************************
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Autodesk.FileSystem;
 using Microsoft.VisualBasic;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 
 namespace Autodesk.Geometry
 {
@@ -53,7 +54,14 @@ namespace Autodesk.Geometry
                     double z = 0;
                     foreach (var strCoord in strCoords)
                     {
-                        if (Information.IsNumeric(strCoord))
+                        bool isNumeric = double.TryParse(
+                                    strCoord,
+                                    NumberStyles.Float | NumberStyles.AllowThousands,
+                                    CultureInfo.CurrentCulture,
+                                    out _
+                                );
+                        //if (Information.IsNumeric(strCoord))
+                        if (isNumeric)
                         {
                             if (intCounter == 0)
                             {

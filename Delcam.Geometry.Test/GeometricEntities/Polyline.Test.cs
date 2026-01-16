@@ -1,5 +1,5 @@
 // **********************************************************************
-// *         © COPYRIGHT 2018 Autodesk, Inc.All Rights Reserved         *
+// *         ï¿½ COPYRIGHT 2018 Autodesk, Inc.All Rights Reserved         *
 // *                                                                    *
 // *  Use of this software is subject to the terms of the Autodesk      *
 // *  license agreement provided at the time of installation            *
@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Autodesk.FileSystem;
 using NUnit.Framework;
+using File = Autodesk.FileSystem.File;
+using NUnit.Framework.Legacy;
 
 namespace Autodesk.Geometry.Test.GeometricEntities
 {
@@ -24,10 +26,10 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             // Read in the polylines
             var lines =
                 Polyline.ReadFromDUCTPictureFile(
-                    new File(AppDomain.CurrentDomain.BaseDirectory + "\\..\\..\\TestFiles\\PicForPolylineTest.pic"));
+                    new File(TestFiles.FetchTestFile("PicForPolylineTest.pic")));
 
             // Assert that we read all the lines
-            Assert.AreEqual(43, lines.Count);
+            ClassicAssert.AreEqual(43, lines.Count);
 
             // Now check that all the points on each line are on the same Z plane.  The original issue (bepokework#) was that lines start 
             // started with a conic arc picked up points from the wrong place in the file
@@ -36,7 +38,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
                 var firstPoint = line[0];
                 for (int i = 0; i <= line.Count - 1; i++)
                 {
-                    Assert.AreEqual(firstPoint.Z, line[i].Z);
+                    ClassicAssert.AreEqual(firstPoint.Z, line[i].Z);
                 }
             }
         }
@@ -47,14 +49,14 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             // Read in the polyline
             Polyline line =
                 Polyline.ReadFromDUCTPictureFile(
-                            new File(AppDomain.CurrentDomain.BaseDirectory + "\\..\\..\\TestFiles\\PicForOpenPolylineTest.pic"))
+                            new File(TestFiles.FetchTestFile("PicForOpenPolylineTest.pic")))
                         .Single();
 
             // Assert that we read all the lines
-            Assert.AreEqual(8, line.Count);
+            ClassicAssert.AreEqual(8, line.Count);
 
             line.Repoint(12);
-            Assert.AreEqual(line.Count, 12, "Polyline failed to Repoint. It should have 20 points.");
+            ClassicAssert.AreEqual(line.Count, 12, "Polyline failed to Repoint. It should have 20 points.");
         }
 
         [Test]
@@ -72,7 +74,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
 
             Polyline newline = Polyline.ReadFromDUCTPictureFile(tempFile).Single();
             // Assert that the polyline read from the file is open
-            Assert.IsFalse(newline.IsClosed);
+            ClassicAssert.IsFalse(newline.IsClosed);
 
             // Close the polyline and write again
             line.IsClosed = true;
@@ -81,15 +83,15 @@ namespace Autodesk.Geometry.Test.GeometricEntities
 
             newline = Polyline.ReadFromDUCTPictureFile(tempFile).Single();
             // Assert that the polyline read from the file is closed
-            Assert.IsTrue(newline.IsClosed);
+            ClassicAssert.IsTrue(newline.IsClosed);
             tempFile.Delete();
         }
 
         [Test]
         public void DensifyTest()
         {
-            var spline = Spline.ReadFromDUCTPictureFile(new FileSystem.File(AppDomain.CurrentDomain.BaseDirectory +
-                                                                            "\\..\\..\\TestFiles\\SplineTestFiles\\FreedByPowershape.pic"))[0];
+            var spline = Spline.ReadFromDUCTPictureFile(
+                new FileSystem.File(TestFiles.FetchTestFile("FreedByPowershape.pic")))[0];
             var polyline = new Polyline(spline, 0.1);
             polyline.Densify(1);
             Assert.That(polyline.Count, Is.EqualTo(1103));
@@ -105,7 +107,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             double newMax = 2;
             var vector = new Vector(startPoint, endPoint);
             var length = vector.Magnitude;
-            Assert.IsTrue(length % newMax == 0);
+            ClassicAssert.IsTrue(length % newMax == 0);
 
             // When
             var poliline = new Polyline(new List<Point> {startPoint, endPoint});

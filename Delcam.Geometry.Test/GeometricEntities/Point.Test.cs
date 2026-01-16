@@ -1,5 +1,5 @@
 // **********************************************************************
-// *         © COPYRIGHT 2018 Autodesk, Inc.All Rights Reserved         *
+// *         ï¿½ COPYRIGHT 2018 Autodesk, Inc.All Rights Reserved         *
 // *                                                                    *
 // *  Use of this software is subject to the terms of the Autodesk      *
 // *  license agreement provided at the time of installation            *
@@ -10,6 +10,7 @@
 using System;
 using Autodesk.Geometry.Euler;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Autodesk.Geometry.Test.GeometricEntities
 {
@@ -50,7 +51,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             MM actual = default(MM);
             target.X = expected;
             actual = target.X;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -64,7 +65,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             MM actual = default(MM);
             target.Y = expected;
             actual = target.Y;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -78,7 +79,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             MM actual = default(MM);
             target.Z = expected;
             actual = target.Z;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -91,7 +92,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             string expected = "1.1234 2.2345 3.3456";
             string actual = null;
             actual = target.ToString();
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -108,11 +109,11 @@ namespace Autodesk.Geometry.Test.GeometricEntities
 
             target = new Point(1.0, 2.0, 4.0);
             target.RotateAboutXAxis(pointToRotateAbout, angleRadian);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
 
             target = new Point(1.0, 2.0, 4.0);
             target.RotateAboutXAxis(pointToRotateAbout, angleDegree);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
         }
 
         /// <summary>
@@ -129,11 +130,11 @@ namespace Autodesk.Geometry.Test.GeometricEntities
 
             target = new Point(1.0, 2.0, 4.0);
             target.RotateAboutYAxis(pointToRotateAbout, angleRadian);
-            Assert.IsTrue(expected.Equals(target, 12));
+            ClassicAssert.IsTrue(expected.Equals(target, 12));
 
             target = new Point(1.0, 2.0, 4.0);
             target.RotateAboutYAxis(pointToRotateAbout, angleDegree);
-            Assert.IsTrue(expected.Equals(target, 12));
+            ClassicAssert.IsTrue(expected.Equals(target, 12));
         }
 
         /// <summary>
@@ -150,11 +151,11 @@ namespace Autodesk.Geometry.Test.GeometricEntities
 
             target = new Point(1.0, 2.0, 4.0);
             target.RotateAboutZAxis(pointToRotateAbout, angleRadian);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
 
             target = new Point(1.0, 2.0, 4.0);
             target.RotateAboutZAxis(pointToRotateAbout, angleDegree);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
         }
 
         /// <summary>
@@ -165,7 +166,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
         {
             Point thisPoint = new Point(0, 1, 0);
             Point otherPoint = new Point(4, 4, 0);
-            Assert.IsTrue(thisPoint.DistanceToPoint(otherPoint) == 5);
+            ClassicAssert.IsTrue(thisPoint.DistanceToPoint(otherPoint) == 5);
         }
 
         /// <summary>
@@ -182,7 +183,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             Point expected = new Point(9.0, 28.0, 37.0);
 
             target.RebaseToWorkplane(workplane);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
         }
 
         /// <summary>
@@ -199,7 +200,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             Point expected = new Point(1.0, 2.0, 3.0);
 
             target.RebaseFromWorkplane(workplane);
-            Assert.AreEqual(expected, target);
+            ClassicAssert.AreEqual(expected, target);
         }
 
         /// <summary>
@@ -213,7 +214,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             Point expected = new Point(-2.0, -4.0, -6.0);
             Point actual = null;
             actual = left - right;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -227,7 +228,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             Vector expected = new Vector(-1.0, 3.0, 17.0);
             Vector actual = null;
             actual = left - right;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -243,11 +244,11 @@ namespace Autodesk.Geometry.Test.GeometricEntities
 
             pointValue = new Point(2.0, 1.0, -4.0);
             actual = scalar * pointValue;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
 
             pointValue = new Point(2.0, 1.0, -4.0);
             actual = pointValue * scalar;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -265,13 +266,13 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             right = new Point(1.0, 2.0, 3.0);
             expected = false;
             actual = left != right;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
 
             left = new Point(1.0, 2.0, 4.0);
             right = new Point(1.0, 2.0, 3.0);
             expected = true;
             actual = left != right;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -294,9 +295,9 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             right = new Point(1.0, 2.0, 3.0);
             expected = false;
             actual = left != right;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
             actual = right != left;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
 
             left = new MM[]
             {
@@ -307,9 +308,9 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             right = new Point(1.0, 2.0, 3.0);
             expected = true;
             actual = left != right;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
             actual = right != left;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -327,13 +328,13 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             right = new Point(1.0, 2.0, 3.0);
             expected = true;
             actual = left == right;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
 
             left = new Point(1.0, 2.0, 4.0);
             right = new Point(1.0, 2.0, 3.0);
             expected = false;
             actual = left == right;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -356,9 +357,9 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             right = new Point(1.0, 2.0, 3.0);
             expected = true;
             actual = left == right;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
             actual = right == left;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
 
             left = new MM[]
             {
@@ -369,9 +370,9 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             right = new Point(1.0, 2.0, 3.0);
             expected = false;
             actual = left == right;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
             actual = right == left;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -385,7 +386,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             Point expected = new Point(2.0 / 1.5, 4.0, 6.0);
             Point actual = null;
             actual = left / scalar;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -399,7 +400,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             Point expected = new Point(5.5, -3.5, 0.5);
             Point actual = null;
             actual = left + right;
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -411,7 +412,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             Point target = new Point(2, 3, 4);
             Euler.Angles angle = new Euler.Angles(0.5, 0.6, 0.7, Conventions.XYX);
             target.EulerRotation(angle);
-            Assert.IsTrue(new Point(4.44486484901456, -1.35675116542822, 2.72073569997234).Equals(target, 12));
+            ClassicAssert.IsTrue(new Point(4.44486484901456, -1.35675116542822, 2.72073569997234).Equals(target, 12));
         }
 
         /// <summary>
@@ -429,17 +430,17 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             obj = 2.0;
             expected = false;
             actual = target.Equals(obj);
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
 
             obj = new Point(1.0, 2.0, 3.0);
             expected = true;
             actual = target.Equals(obj);
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
 
             obj = new Point(1.0, 32.0, 3.0);
             expected = false;
             actual = target.Equals(obj);
-            Assert.AreEqual(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -452,8 +453,8 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             Point expected = new Point(1.0, 2.0, 3.0);
             Point actual = null;
             actual = target.Clone();
-            Assert.AreEqual(expected, actual);
-            Assert.AreNotSame(expected, actual);
+            ClassicAssert.AreEqual(expected, actual);
+            ClassicAssert.AreNotSame(expected, actual);
         }
 
         /// <summary>
@@ -467,9 +468,9 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             MM z = 3.0;
             Point target = new Point(x, y, z);
 
-            Assert.AreEqual(x, target.X);
-            Assert.AreEqual(y, target.Y);
-            Assert.AreEqual(z, target.Z);
+            ClassicAssert.AreEqual(x, target.X);
+            ClassicAssert.AreEqual(y, target.Y);
+            ClassicAssert.AreEqual(z, target.Z);
         }
 
         /// <summary>
@@ -483,9 +484,9 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             MM z = 0.0;
             Point target = new Point();
 
-            Assert.AreEqual(x, target.X);
-            Assert.AreEqual(y, target.Y);
-            Assert.AreEqual(z, target.Z);
+            ClassicAssert.AreEqual(x, target.X);
+            ClassicAssert.AreEqual(y, target.Y);
+            ClassicAssert.AreEqual(z, target.Z);
         }
 
         /// <summary>
@@ -502,9 +503,9 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             MM y = 2.345;
             MM z = 3.456;
 
-            Assert.AreEqual(x, target.X);
-            Assert.AreEqual(y, target.Y);
-            Assert.AreEqual(z, target.Z);
+            ClassicAssert.AreEqual(x, target.X);
+            ClassicAssert.AreEqual(y, target.Y);
+            ClassicAssert.AreEqual(z, target.Z);
         }
 
         /// <summary>
@@ -525,16 +526,16 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             };
             Point target = new Point(pointArray);
 
-            Assert.AreEqual(x, target.X);
-            Assert.AreEqual(y, target.Y);
-            Assert.AreEqual(z, target.Z);
+            ClassicAssert.AreEqual(x, target.X);
+            ClassicAssert.AreEqual(y, target.Y);
+            ClassicAssert.AreEqual(z, target.Z);
         }
 
         [Test]
         public void NullPointTest()
         {
             Point point = new Point();
-            Assert.DoesNotThrow(() =>
+            ClassicAssert.DoesNotThrow(() =>
             {
                 var a = point == null;
             });
@@ -544,7 +545,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
         public void NotNullPointTest()
         {
             Point point = new Point();
-            Assert.DoesNotThrow(() =>
+            ClassicAssert.DoesNotThrow(() =>
             {
                 var a = point == null;
             });
@@ -560,7 +561,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
 
             var result = pointOutsideTriangle.IsInsideTriangle(vertex1, vertex2, vertex3);
 
-            Assert.False(result, "Point is outside triangle, not inside.");
+            ClassicAssert.False(result, "Point is outside triangle, not inside.");
         }
 
         [Test]
@@ -573,7 +574,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
 
             var result = pointInsideTriangle.IsInsideTriangle(vertex1, vertex2, vertex3);
 
-            Assert.True(result, "Point is inside triangle, not outside.");
+            ClassicAssert.True(result, "Point is inside triangle, not outside.");
         }
 
         [Test]
@@ -589,13 +590,13 @@ namespace Autodesk.Geometry.Test.GeometricEntities
 
             var projectedPoint = new Point(0, 0.5, 0);
 
-            Assert.IsTrue(projectedPoint.IsInsideTriangle(vertex1, vertex2, vertex3));
+            ClassicAssert.IsTrue(projectedPoint.IsInsideTriangle(vertex1, vertex2, vertex3));
 
             // When
             var result = point.IsRayInterceptTriangleTest(rayDirection, vertex1, vertex2, vertex3);
 
             // Then
-            Assert.IsTrue(result);
+            ClassicAssert.IsTrue(result);
         }
 
         [Test]
@@ -611,13 +612,13 @@ namespace Autodesk.Geometry.Test.GeometricEntities
 
             var projectedPoint = new Point(0, 3, 0);
 
-            Assert.IsFalse(projectedPoint.IsInsideTriangle(vertex1, vertex2, vertex3));
+            ClassicAssert.IsFalse(projectedPoint.IsInsideTriangle(vertex1, vertex2, vertex3));
 
             // When
             var result = point.IsRayInterceptTriangleTest(rayDirection, vertex1, vertex2, vertex3);
 
             // Then
-            Assert.IsFalse(result);
+            ClassicAssert.IsFalse(result);
         }
 
         [Test]
@@ -648,7 +649,7 @@ namespace Autodesk.Geometry.Test.GeometricEntities
             var result = point.IsRayInterceptTriangleTest(rayDirection, vertex1, vertex2, vertex3);
 
             // Then
-            Assert.IsTrue(result);
+            ClassicAssert.IsTrue(result);
         }
 
         #endregion
